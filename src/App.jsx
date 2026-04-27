@@ -12,6 +12,7 @@ import {
   MessageSquare,
   Server,
   ShieldAlert,
+  Siren,
   Target,
   Terminal,
   Users,
