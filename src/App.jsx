@@ -18,6 +18,9 @@ import {
   Users,
   Workflow,
   Zap,
+  TrendingUp,
+  Radio,
+  Database,
 } from "lucide-react";
 
 const navItems = [
@@ -41,6 +44,7 @@ const incident = {
   affectedUsers: "1,240",
   slaRisk: "Medium",
   businessImpact: "$48K",
+  confidence: "87%",
   summary:
     "Customer reports degraded AI workflow recommendations and delayed assistant responses across operations support teams.",
 };
@@ -49,7 +53,7 @@ const signals = [
   { label: "Latency Spike", value: "2.8s", status: "High", icon: Clock },
   { label: "Prompt Failure Rate", value: "11%", status: "Elevated", icon: AlertTriangle },
   { label: "Affected Users", value: "1.2K", status: "Wide Impact", icon: Users },
-  { label: "Confidence Score", value: "87%", status: "Strong", icon: Gauge },
+  { label: "AI Confidence", value: "87%", status: "Strong", icon: Gauge },
 ];
 
 const rootCauses = [
@@ -234,11 +238,25 @@ function Sidebar({ activePage, setActivePage }) {
       <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-4">
         <p className="text-xs font-semibold uppercase text-slate-400">Portfolio Demo</p>
         <p className="mt-2 text-sm text-slate-300">
-          React + Tailwind + Vercel app simulating AI incident triage, root cause analysis,
-          remediation planning, SLA intelligence, and executive communication.
+          AI incident triage, root-cause analysis, remediation planning, SLA intelligence,
+          and executive customer communication.
         </p>
       </div>
     </aside>
+  );
+}
+
+function ConfidenceBar({ value }) {
+  return (
+    <div>
+      <div className="mb-1 flex justify-between text-sm font-semibold">
+        <span>AI Confidence</span>
+        <span>{value}%</span>
+      </div>
+      <div className="h-3 overflow-hidden rounded-full bg-slate-200">
+        <div className="h-3 rounded-full bg-slate-950 transition-all duration-700" style={{ width: `${value}%` }} />
+      </div>
+    </div>
   );
 }
 
@@ -258,43 +276,32 @@ function SignalCard({ item }) {
   );
 }
 
-function ConfidenceBar({ value }) {
-  return (
-    <div>
-      <div className="mb-1 flex justify-between text-sm font-semibold">
-        <span>AI Confidence</span>
-        <span>{value}%</span>
-      </div>
-      <div className="h-4 rounded-full bg-slate-200">
-        <div className="h-4 rounded-full bg-slate-950" style={{ width: `${value}%` }} />
-      </div>
-    </div>
-  );
-}
-
 function ExecutiveBanner() {
+  const cards = [
+    { title: "Severity", value: incident.severity, icon: Siren, dark: true },
+    { title: "SLA Risk", value: incident.slaRisk, icon: Clock },
+    { title: "Users Impacted", value: incident.affectedUsers, icon: Users },
+    { title: "Business Impact", value: incident.businessImpact, icon: Target },
+    { title: "Model Confidence", value: incident.confidence, icon: Brain },
+  ];
+
   return (
-    <div className="mb-8 grid gap-4 md:grid-cols-4">
-      <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-sm">
-        <Siren />
-        <p className="mt-3 text-sm text-slate-400">Severity</p>
-        <p className="text-2xl font-bold">{incident.severity}</p>
-      </div>
-      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
-        <Clock />
-        <p className="mt-3 text-sm text-slate-500">SLA Risk</p>
-        <p className="text-2xl font-bold">{incident.slaRisk}</p>
-      </div>
-      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
-        <Users />
-        <p className="mt-3 text-sm text-slate-500">Users Impacted</p>
-        <p className="text-2xl font-bold">{incident.affectedUsers}</p>
-      </div>
-      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
-        <Target />
-        <p className="mt-3 text-sm text-slate-500">Business Impact</p>
-        <p className="text-2xl font-bold">{incident.businessImpact}</p>
-      </div>
+    <div className="mb-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      {cards.map((card) => {
+        const Icon = card.icon;
+        return (
+          <div
+            key={card.title}
+            className={`rounded-2xl p-5 shadow-sm ${
+              card.dark ? "bg-slate-950 text-white" : "border border-slate-200 bg-white text-slate-950"
+            }`}
+          >
+            <Icon size={22} />
+            <p className={`mt-3 text-sm ${card.dark ? "text-slate-400" : "text-slate-500"}`}>{card.title}</p>
+            <p className="text-2xl font-bold">{card.value}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -349,8 +356,8 @@ function IncidentIntake() {
 
 function AgentAnalysis() {
   return (
-    <div className="grid gap-6 xl:grid-cols-2">
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="grid gap-6 xl:grid-cols-3">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm xl:col-span-2">
         <div className="flex items-center gap-3">
           <Brain />
           <h2 className="text-2xl font-bold">AI Agent Analysis Stream</h2>
@@ -359,12 +366,12 @@ function AgentAnalysis() {
         <div className="mt-6 space-y-4">
           {agentSteps.map((step) => (
             <div key={step.label} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
+              <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
                 <div>
                   <h3 className="font-bold">{step.label}</h3>
                   <p className="mt-1 text-sm text-slate-600">{step.detail}</p>
                 </div>
-                <div className="min-w-[180px]">
+                <div className="min-w-[220px]">
                   <ConfidenceBar value={step.confidence} />
                 </div>
               </div>
@@ -612,18 +619,30 @@ export default function App() {
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
 
       <main className="flex-1 p-6 md:p-10">
-        <div className="mb-8">
-          <p className="text-sm font-bold uppercase tracking-wide text-slate-500">
-            AI Incident Resolution Portfolio Project
-          </p>
+        <div className="mb-8 flex flex-col justify-between gap-4 xl:flex-row xl:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wide text-slate-500">
+              AI Incident Resolution Portfolio Project
+            </p>
 
-          <h1 className="mt-2 text-4xl font-bold md:text-5xl">{activePage}</h1>
+            <h1 className="mt-2 text-4xl font-bold md:text-5xl">{activePage}</h1>
 
-          <p className="mt-3 max-w-4xl text-slate-600">
-            Enterprise AI incident response platform for triaging customer issues,
-            surfacing root causes, generating remediation steps, tracking escalation paths,
-            managing SLA risk, and producing executive-ready customer communication.
-          </p>
+            <p className="mt-3 max-w-4xl text-slate-600">
+              Enterprise AI incident response platform for triaging customer issues,
+              surfacing root causes, generating remediation steps, tracking escalation paths,
+              managing SLA risk, and producing executive-ready customer communication.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+            <div className="flex items-center gap-3">
+              <Radio size={20} />
+              <div>
+                <p className="text-xs font-bold uppercase text-slate-500">System Status</p>
+                <p className="font-bold text-slate-950">Live Monitoring Active</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {renderPage()}
