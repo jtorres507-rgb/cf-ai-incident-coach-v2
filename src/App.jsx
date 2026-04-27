@@ -2,15 +2,10 @@ import { useState } from "react";
 import {
   AlertTriangle,
   Brain,
-  CheckCircle2,
   Clock3,
-  FileText,
-  Gauge,
   MessageSquare,
   ShieldAlert,
-  Siren,
   Users,
-  Workflow,
   Zap,
   Activity,
   BarChart3,
@@ -25,6 +20,7 @@ import {
   Tooltip,
   BarChart,
   Bar,
+  YAxis,
 } from "recharts";
 
 const navItems = [
@@ -58,7 +54,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex text-slate-900">
-      {/* Sidebar */}
       <aside className="w-64 bg-[#020826] text-white min-h-screen px-5 py-6">
         <div className="flex items-center gap-3 mb-10">
           <div className="bg-white text-black p-3 rounded-2xl">
@@ -94,13 +89,12 @@ export default function App() {
         </div>
       </aside>
 
-      {/* Main */}
       <main className="flex-1 px-8 py-8">
         <p className="uppercase text-sm font-bold tracking-widest text-slate-500 mb-2">
           AI INCIDENT RESOLUTION PORTFOLIO PROJECT
         </p>
 
-        <div className="flex justify-between items-center mb-5">
+        <div className="flex justify-between items-start mb-6 gap-6">
           <div>
             <h1 className="text-6xl font-bold">{active}</h1>
             <p className="text-slate-600 mt-3 text-2xl max-w-5xl leading-10">
@@ -124,7 +118,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Top command cards */}
         <div className="grid grid-cols-4 gap-4 mb-6">
           <CommandCard icon={<ShieldAlert />} title="Severity" value="High" dark />
           <CommandCard icon={<Clock3 />} title="SLA Risk" value="Medium" />
@@ -132,7 +125,6 @@ export default function App() {
           <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
         </div>
 
-        {/* Incident Card */}
         <section className="bg-white rounded-3xl shadow-md p-6 mb-6 border border-slate-200">
           <div className="flex justify-between">
             <div>
@@ -156,8 +148,6 @@ export default function App() {
             <InfoCard title="Affected Users" value="1,240" />
           </div>
         </section>
-
-        {/* Charts */}
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
             <div className="flex items-center gap-2 mb-4">
@@ -181,6 +171,7 @@ export default function App() {
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={confidenceData} layout="vertical">
                 <XAxis type="number" hide />
+                <YAxis dataKey="name" type="category" width={170} />
                 <Tooltip />
                 <Bar dataKey="value" fill="#020826" />
               </BarChart>
@@ -188,7 +179,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* AI Recommendation + Customer Comms */}
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
             <div className="flex items-center gap-2 mb-4">
@@ -228,7 +218,11 @@ export default function App() {
 
 function CommandCard({ icon, title, value, dark }) {
   return (
-    <div className={`${dark ? "bg-[#020826] text-white" : "bg-white"} rounded-3xl shadow-md p-5 border border-slate-200`}>
+    <div
+      className={`${
+        dark ? "bg-[#020826] text-white" : "bg-white"
+      } rounded-3xl shadow-md p-5 border border-slate-200`}
+    >
       <div className="mb-3">{icon}</div>
       <p className="text-slate-500 text-lg">{title}</p>
       <h3 className="text-5xl font-bold">{value}</h3>
