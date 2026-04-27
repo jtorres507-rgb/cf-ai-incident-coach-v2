@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Activity,
   AlertTriangle,
   Brain,
   CheckCircle,
@@ -7,21 +8,20 @@ import {
   FileText,
   Gauge,
   Lightbulb,
+  Mail,
   MessageSquare,
+  Server,
   ShieldAlert,
-  Siren,
+  Target,
   Terminal,
   Users,
   Workflow,
   Zap,
-  Activity,
-  Mail,
-  Server,
-  Target,
 } from "lucide-react";
 
 const navItems = [
   "Incident Intake",
+  "Agent Analysis",
   "Root Cause Engine",
   "AI Recommendations",
   "Executive Summary",
@@ -38,6 +38,8 @@ const incident = {
   reportedBy: "Customer Success Team",
   timeOpen: "47 minutes",
   affectedUsers: "1,240",
+  slaRisk: "Medium",
+  businessImpact: "$48K",
   summary:
     "Customer reports degraded AI workflow recommendations and delayed assistant responses across operations support teams.",
 };
@@ -130,6 +132,52 @@ const escalationItems = [
   },
 ];
 
+const agentSteps = [
+  {
+    label: "Signal detected",
+    detail: "Latency and prompt failure rate exceeded normal operating threshold.",
+    confidence: 92,
+  },
+  {
+    label: "Evidence retrieved",
+    detail: "Recent knowledge-base update overlaps with affected logistics workflow prompts.",
+    confidence: 87,
+  },
+  {
+    label: "Failure vector ranked",
+    detail: "Retrieval quality drift ranked above rate-limit and prompt regression scenarios.",
+    confidence: 84,
+  },
+  {
+    label: "Remediation selected",
+    detail: "Validate retrieval, rollback prompt template, and send customer update.",
+    confidence: 89,
+  },
+];
+
+const messageThread = [
+  {
+    sender: "Customer Success",
+    message: "Customer reports recommendations are slower and less relevant for operations teams.",
+    time: "09:12",
+  },
+  {
+    sender: "AI Incident Coach",
+    message: "High-severity incident created. Retrieval mismatch is the leading suspected cause.",
+    time: "09:31",
+  },
+  {
+    sender: "AI Engineering",
+    message: "Reviewing latest prompt template and retrieval changes for logistics workflows.",
+    time: "09:42",
+  },
+  {
+    sender: "Customer Success",
+    message: "Need executive-ready summary and next update language for customer call.",
+    time: "09:58",
+  },
+];
+
 function Pill({ value }) {
   const styles = {
     High: "bg-red-100 text-red-700",
@@ -185,8 +233,8 @@ function Sidebar({ activePage, setActivePage }) {
       <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-4">
         <p className="text-xs font-semibold uppercase text-slate-400">Portfolio Demo</p>
         <p className="mt-2 text-sm text-slate-300">
-          React + Tailwind + Vercel app simulating incident triage, root cause analysis,
-          remediation planning, and executive customer communication.
+          React + Tailwind + Vercel app simulating AI incident triage, root cause analysis,
+          remediation planning, SLA intelligence, and executive communication.
         </p>
       </div>
     </aside>
@@ -223,9 +271,38 @@ function ConfidenceBar({ value }) {
   );
 }
 
+function ExecutiveBanner() {
+  return (
+    <div className="mb-8 grid gap-4 md:grid-cols-4">
+      <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-sm">
+        <Siren />
+        <p className="mt-3 text-sm text-slate-400">Severity</p>
+        <p className="text-2xl font-bold">{incident.severity}</p>
+      </div>
+      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
+        <Clock />
+        <p className="mt-3 text-sm text-slate-500">SLA Risk</p>
+        <p className="text-2xl font-bold">{incident.slaRisk}</p>
+      </div>
+      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
+        <Users />
+        <p className="mt-3 text-sm text-slate-500">Users Impacted</p>
+        <p className="text-2xl font-bold">{incident.affectedUsers}</p>
+      </div>
+      <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200">
+        <Target />
+        <p className="mt-3 text-sm text-slate-500">Business Impact</p>
+        <p className="text-2xl font-bold">{incident.businessImpact}</p>
+      </div>
+    </div>
+  );
+}
+
 function IncidentIntake() {
   return (
     <>
+      <ExecutiveBanner />
+
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
@@ -266,6 +343,55 @@ function IncidentIntake() {
         ))}
       </div>
     </>
+  );
+}
+
+function AgentAnalysis() {
+  return (
+    <div className="grid gap-6 xl:grid-cols-2">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex items-center gap-3">
+          <Brain />
+          <h2 className="text-2xl font-bold">AI Agent Analysis Stream</h2>
+        </div>
+
+        <div className="mt-6 space-y-4">
+          {agentSteps.map((step) => (
+            <div key={step.label} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
+                <div>
+                  <h3 className="font-bold">{step.label}</h3>
+                  <p className="mt-1 text-sm text-slate-600">{step.detail}</p>
+                </div>
+                <div className="min-w-[180px]">
+                  <ConfidenceBar value={step.confidence} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
+        <Terminal />
+        <h2 className="mt-4 text-2xl font-bold">Retrieved Evidence</h2>
+
+        <div className="mt-5 space-y-4 text-sm text-slate-300">
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="font-bold text-white">Evidence 01</p>
+            <p className="mt-1">Policy content update shipped 42 minutes before incident report.</p>
+          </div>
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="font-bold text-white">Evidence 02</p>
+            <p className="mt-1">Failed prompts share missing logistics workflow context variables.</p>
+          </div>
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="font-bold text-white">Evidence 03</p>
+            <p className="mt-1">Latency increased during same period as retrieval precision drop.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -397,6 +523,25 @@ function ExecutiveSummary() {
           </p>
         </div>
       </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm xl:col-span-2">
+        <div className="flex items-center gap-3">
+          <MessageSquare />
+          <h2 className="text-2xl font-bold">Incident Communication Thread</h2>
+        </div>
+
+        <div className="mt-6 grid gap-4">
+          {messageThread.map((msg) => (
+            <div key={`${msg.sender}-${msg.time}`} className="rounded-xl bg-slate-100 p-4">
+              <div className="flex justify-between gap-4">
+                <p className="font-bold">{msg.sender}</p>
+                <p className="text-sm text-slate-500">{msg.time}</p>
+              </div>
+              <p className="mt-2 text-slate-700">{msg.message}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -452,6 +597,7 @@ export default function App() {
   const [activePage, setActivePage] = useState("Incident Intake");
 
   const renderPage = () => {
+    if (activePage === "Agent Analysis") return <AgentAnalysis />;
     if (activePage === "Root Cause Engine") return <RootCauseEngine />;
     if (activePage === "AI Recommendations") return <AIRecommendations />;
     if (activePage === "Executive Summary") return <ExecutiveSummary />;
@@ -475,7 +621,7 @@ export default function App() {
           <p className="mt-3 max-w-4xl text-slate-600">
             Enterprise AI incident response platform for triaging customer issues,
             surfacing root causes, generating remediation steps, tracking escalation paths,
-            and producing executive-ready customer communication.
+            managing SLA risk, and producing executive-ready customer communication.
           </p>
         </div>
 
