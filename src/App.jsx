@@ -50,9 +50,53 @@ const confidenceData = [
   { name: "Vector Timeout", value: 64 },
   { name: "Model Saturation", value: 58 },
 ];
+const agentHealth = [
+  { metric: "Prompt Accuracy", score: "91%" },
+  { metric: "Avg Token Delay", score: "1.8s" },
+  { metric: "Fallback Usage", score: "12%" },
+  { metric: "Embedding Recall", score: "88%" },
+];
 
+const rootCauseFindings = [
+  "Primary failure source traced to retrieval latency spike in vector database cluster.",
+  "Secondary degradation caused by prompt queue saturation during customer peak load.",
+  "No evidence of core model outage; inference nodes remain stable.",
+  "AI confidence indicates infrastructure bottleneck rather than model hallucination.",
+];
+
+const aiActions = [
+  "Shift customer prompt traffic to low-latency backup retrieval region.",
+  "Temporarily reduce embedding refresh intervals to stabilize search throughput.",
+  "Trigger reliability engineering escalation and SLA protection workflow.",
+  "Issue customer-facing executive communication with 30-minute update cadence.",
+];
+
+const timelineEvents = [
+  "08:42 AM — Customer Success reports abnormal AI assistant delays.",
+  "08:51 AM — Monitoring agent flags retrieval latency above SLA threshold.",
+  "09:03 AM — Root Cause Engine identifies vector timeout concentration.",
+  "09:14 AM — AI Recommendations generated remediation sequence.",
+  "09:20 AM — Customer Comms AI drafts executive status update.",
+];
+
+const escalationOwners = [
+  { owner: "Reliability Lead", sla: "15 min", level: "Critical" },
+  { owner: "AI Platform Engineer", sla: "30 min", level: "High" },
+  { owner: "Customer Success Director", sla: "45 min", level: "Moderate" },
+  { owner: "Executive Sponsor", sla: "60 min", level: "Standby" },
+];
 export default function App() {
   const [active, setActive] = useState("Incident Intake");
+const renderWorkspace = () => {
+    if (active === "Agent Analysis") return <AgentAnalysis />;
+    if (active === "Root Cause Engine") return <RootCauseEngine />;
+    if (active === "AI Recommendations") return <AIRecommendations />;
+    if (active === "Executive Summary") return <ExecutiveSummary />;
+    if (active === "Resolution Timeline") return <ResolutionTimeline />;
+    if (active === "Escalation Matrix") return <EscalationMatrix />;
+    if (active === "Customer Comms AI") return <CustomerCommsAI />;
+    return <IncidentIntake />;
+  };
 
   return (
     <div className="min-h-screen bg-slate-100 flex text-slate-900">
@@ -91,129 +135,9 @@ export default function App() {
       </aside>
 
       <main className="flex-1 p-8 overflow-y-auto">
-        <div className="flex justify-between gap-6 items-start mb-8">
-          <div>
-            <p className="uppercase text-sm font-bold tracking-widest text-slate-500 mb-2">
-              AI INCIDENT RESOLUTION PORTFOLIO PROJECT
-            </p>
-            <h1 className="text-5xl font-bold">{active}</h1>
-            <p className="text-slate-600 mt-3 text-lg max-w-5xl leading-8">
-              Enterprise AI incident response platform for triaging customer issues,
-              surfacing root causes, generating remediation steps, monitoring SLA exposure,
-              and producing executive-ready communication.
-            </p>
-          </div>
-
-          <div className="bg-[#020826] text-white rounded-2xl px-6 py-5 w-96 shadow-xl">
-            <div className="flex items-center gap-3 mb-4">
-              <Activity size={22} />
-              <span className="font-bold text-lg">AI HEALTH MONITOR</span>
-            </div>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span>Model Uptime</span><span>99.2%</span></div>
-              <div className="flex justify-between"><span>Prompt Success</span><span>89%</span></div>
-              <div className="flex justify-between"><span>Retrieval Health</span><span>Stable</span></div>
-              <div className="flex justify-between"><span>API Queue</span><span>Normal</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <CommandCard icon={<Siren />} title="Severity" value="High" dark />
-          <CommandCard icon={<Clock />} title="SLA Risk" value="Medium" />
-          <CommandCard icon={<Users />} title="Users Impacted" value="1,240" />
-          <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
-        </div>
-
-        <section className="bg-white rounded-3xl shadow-md p-6 mb-6 border border-slate-200">
-          <div className="flex justify-between">
-            <div>
-              <p className="text-slate-500 font-bold">INC-AI-0427</p>
-              <h2 className="text-3xl font-bold mt-2">Enterprise Logistics Co.</h2>
-              <p className="text-slate-600 text-base mt-3">
-                Customer reports degraded AI workflow recommendations and delayed assistant responses
-                across operations support teams.
-              </p>
-            </div>
-            <div className="flex gap-3 h-fit">
-              <span className="bg-red-100 text-red-500 px-4 py-1 rounded-full font-bold">High</span>
-              <span className="bg-blue-100 text-blue-500 px-4 py-1 rounded-full font-bold">Active</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-4 gap-4 mt-6">
-            <InfoCard title="Product Area" value="AI Workflow Assistant" />
-            <InfoCard title="Reported By" value="Customer Success Team" />
-            <InfoCard title="Time Open" value="47 minutes" />
-            <InfoCard title="Affected Users" value="1,240" />
-          </div>
-        </section>
-
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
-            <div className="flex items-center gap-2 mb-4">
-              <BarChart3 size={20} />
-              <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
-            </div>
-            <ResponsiveContainer width="100%" height={250}>
-              <AreaChart data={trendData}>
-                <XAxis dataKey="day" />
-                <Tooltip />
-                <Area type="monotone" dataKey="latency" stroke="#111827" fill="#cbd5e1" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
-            <div className="flex items-center gap-2 mb-4">
-              <AlertTriangle size={20} />
-              <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
-            </div>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={confidenceData} layout="vertical">
-                <XAxis type="number" hide />
-                <YAxis dataKey="name" type="category" width={140} />
-                <Tooltip />
-                <Bar dataKey="value" fill="#020826" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
-            <div className="flex items-center gap-2 mb-4">
-              <Zap size={20} />
-              <h3 className="font-bold text-2xl">AI Recommended Actions</h3>
-            </div>
-            <ul className="space-y-4 text-lg text-slate-700 leading-8">
-              <li>• Reroute prompt traffic to backup inference pool</li>
-              <li>• Flush delayed retrieval queue and restart vector worker</li>
-              <li>• Trigger customer-facing SLA communication package</li>
-              <li>• Escalate to engineering reliability lead</li>
-            </ul>
-          </div>
-
-          <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-md">
-            <div className="flex items-center gap-2 mb-4">
-              <MessageSquare size={20} />
-              <h3 className="font-bold text-2xl">Customer Communication Generator</h3>
-            </div>
-            <p className="text-slate-300 text-base leading-8">
-              Executive Summary Generated:
-              <br /><br />
-              "Our engineering teams have identified elevated latency in AI workflow
-              recommendation services. Active remediation is underway with current SLA risk
-              classified as moderate. Next customer update scheduled in 30 minutes."
-            </p>
-          </div>
-        </div>
-
-        <footer className="text-slate-500 text-sm">
-          Built with React, Vite, Tailwind CSS, Recharts, GitHub, and Vercel.
-        </footer>
+        {renderWorkspace()}
       </main>
-    </div>
+    </div>      
   );
 }
 
