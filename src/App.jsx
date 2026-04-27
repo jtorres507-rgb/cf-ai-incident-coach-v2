@@ -14,6 +14,10 @@ import {
   Users,
   Workflow,
   Zap,
+  Activity,
+  Mail,
+  Server,
+  Target,
 } from "lucide-react";
 
 const navItems = [
@@ -22,6 +26,7 @@ const navItems = [
   "AI Recommendations",
   "Executive Summary",
   "Resolution Timeline",
+  "Escalation Matrix",
 ];
 
 const incident = {
@@ -47,39 +52,105 @@ const signals = [
 const rootCauses = [
   {
     title: "Knowledge base retrieval mismatch",
-    confidence: "87%",
+    confidence: 87,
+    risk: "High",
     detail:
       "Recent policy content update may have reduced retrieval precision for logistics workflow prompts.",
   },
   {
     title: "Prompt template regression",
-    confidence: "72%",
+    confidence: 72,
+    risk: "Medium",
     detail:
       "Support workflow prompts may be missing required customer context variables after latest release.",
   },
   {
     title: "Rate limiting during peak usage",
-    confidence: "64%",
+    confidence: 64,
+    risk: "Medium",
     detail:
       "Usage volume exceeded expected operating range during customer support surge window.",
   },
 ];
 
 const recommendations = [
-  "Rollback latest prompt template changes for logistics workflow assistant.",
-  "Run retrieval test set against updated knowledge base documents.",
-  "Temporarily increase request queue capacity during peak support hours.",
-  "Notify customer success owner with executive-ready incident summary.",
-  "Schedule post-incident review to improve monitoring and release validation.",
+  {
+    action: "Rollback latest prompt template changes",
+    owner: "AI Engineering",
+    impact: "High",
+    eta: "30 min",
+  },
+  {
+    action: "Run retrieval validation against updated knowledge base",
+    owner: "Solutions Architecture",
+    impact: "High",
+    eta: "45 min",
+  },
+  {
+    action: "Increase queue capacity during peak usage window",
+    owner: "Platform Operations",
+    impact: "Medium",
+    eta: "20 min",
+  },
+  {
+    action: "Send customer-facing incident update",
+    owner: "Customer Success",
+    impact: "High",
+    eta: "15 min",
+  },
 ];
 
 const timeline = [
-  { time: "09:12", event: "Customer reported degraded AI recommendations." },
-  { time: "09:18", event: "Incident classified as High severity due to broad user impact." },
-  { time: "09:31", event: "Root cause analysis identified retrieval mismatch as primary suspect." },
-  { time: "09:44", event: "AI recommendation engine generated remediation plan." },
-  { time: "09:59", event: "Customer-facing summary drafted for success team review." },
+  { time: "09:12", status: "Complete", event: "Customer reported degraded AI recommendations." },
+  { time: "09:18", status: "Complete", event: "Incident classified as High severity due to broad user impact." },
+  { time: "09:31", status: "Complete", event: "Root cause analysis identified retrieval mismatch as primary suspect." },
+  { time: "09:44", status: "Complete", event: "AI recommendation engine generated remediation plan." },
+  { time: "09:59", status: "In Progress", event: "Customer-facing summary drafted for success team review." },
+  { time: "10:15", status: "Pending", event: "Post-remediation validation and customer confirmation." },
 ];
+
+const escalationItems = [
+  {
+    level: "Critical",
+    owner: "Engineering + Customer Success",
+    trigger: "Major customer impact, security event, or production outage.",
+    response: "Immediate executive escalation and 15-minute status updates.",
+  },
+  {
+    level: "High",
+    owner: "Technical Success",
+    trigger: "Degraded AI output quality or adoption-impacting workflow failure.",
+    response: "Root cause triage, remediation plan, and customer update within 60 minutes.",
+  },
+  {
+    level: "Medium",
+    owner: "Support + Solutions",
+    trigger: "Localized issue affecting limited users or one workflow.",
+    response: "Investigate, document workaround, and monitor for recurring pattern.",
+  },
+];
+
+function Pill({ value }) {
+  const styles = {
+    High: "bg-red-100 text-red-700",
+    Critical: "bg-red-100 text-red-700",
+    Elevated: "bg-amber-100 text-amber-700",
+    Medium: "bg-amber-100 text-amber-700",
+    Low: "bg-emerald-100 text-emerald-700",
+    Strong: "bg-emerald-100 text-emerald-700",
+    Active: "bg-blue-100 text-blue-700",
+    Complete: "bg-emerald-100 text-emerald-700",
+    "In Progress": "bg-blue-100 text-blue-700",
+    Pending: "bg-slate-100 text-slate-700",
+    "Wide Impact": "bg-red-100 text-red-700",
+  };
+
+  return (
+    <span className={`rounded-full px-3 py-1 text-xs font-bold ${styles[value] || "bg-slate-100 text-slate-700"}`}>
+      {value}
+    </span>
+  );
+}
 
 function Sidebar({ activePage, setActivePage }) {
   return (
@@ -97,15 +168,12 @@ function Sidebar({ activePage, setActivePage }) {
       <nav className="mt-10 space-y-2">
         {navItems.map((item) => {
           const active = activePage === item;
-
           return (
             <button
               key={item}
               onClick={() => setActivePage(item)}
               className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
-                active
-                  ? "bg-white text-slate-950"
-                  : "text-slate-300 hover:bg-slate-800"
+                active ? "bg-white text-slate-950" : "text-slate-300 hover:bg-slate-800"
               }`}
             >
               {item}
@@ -115,51 +183,42 @@ function Sidebar({ activePage, setActivePage }) {
       </nav>
 
       <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-4">
-        <p className="text-xs font-semibold uppercase text-slate-400">
-          Portfolio Demo
-        </p>
+        <p className="text-xs font-semibold uppercase text-slate-400">Portfolio Demo</p>
         <p className="mt-2 text-sm text-slate-300">
-          Simulates AI incident triage, root cause analysis, remediation planning,
-          and customer communication workflows.
+          React + Tailwind + Vercel app simulating incident triage, root cause analysis,
+          remediation planning, and executive customer communication.
         </p>
       </div>
     </aside>
   );
 }
 
-function StatusPill({ value }) {
-  const styles = {
-    High: "bg-red-100 text-red-700",
-    Elevated: "bg-amber-100 text-amber-700",
-    "Wide Impact": "bg-red-100 text-red-700",
-    Strong: "bg-emerald-100 text-emerald-700",
-    Active: "bg-blue-100 text-blue-700",
-  };
-
-  return (
-    <span
-      className={`rounded-full px-3 py-1 text-xs font-bold ${
-        styles[value] || "bg-slate-100 text-slate-700"
-      }`}
-    >
-      {value}
-    </span>
-  );
-}
-
 function SignalCard({ item }) {
   const Icon = item.icon;
-
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex items-center justify-between">
         <div className="rounded-xl bg-slate-100 p-3">
           <Icon size={23} />
         </div>
-        <StatusPill value={item.status} />
+        <Pill value={item.status} />
       </div>
       <p className="mt-5 text-sm text-slate-500">{item.label}</p>
       <p className="mt-1 text-3xl font-bold text-slate-950">{item.value}</p>
+    </div>
+  );
+}
+
+function ConfidenceBar({ value }) {
+  return (
+    <div>
+      <div className="mb-1 flex justify-between text-sm font-semibold">
+        <span>AI Confidence</span>
+        <span>{value}%</span>
+      </div>
+      <div className="h-4 rounded-full bg-slate-200">
+        <div className="h-4 rounded-full bg-slate-950" style={{ width: `${value}%` }} />
+      </div>
     </div>
   );
 }
@@ -170,16 +229,14 @@ function IncidentIntake() {
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-slate-500">
-              {incident.id}
-            </p>
+            <p className="text-sm font-bold uppercase tracking-wide text-slate-500">{incident.id}</p>
             <h2 className="mt-2 text-3xl font-bold">{incident.customer}</h2>
             <p className="mt-2 max-w-4xl text-slate-600">{incident.summary}</p>
           </div>
 
           <div className="flex gap-3">
-            <StatusPill value={incident.severity} />
-            <StatusPill value="Active" />
+            <Pill value={incident.severity} />
+            <Pill value="Active" />
           </div>
         </div>
 
@@ -216,19 +273,19 @@ function RootCauseEngine() {
   return (
     <div className="grid gap-6">
       {rootCauses.map((cause) => (
-        <div
-          key={cause.title}
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-        >
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+        <div key={cause.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
             <div>
-              <h2 className="text-2xl font-bold">{cause.title}</h2>
-              <p className="mt-2 text-slate-600">{cause.detail}</p>
+              <div className="flex items-center gap-3">
+                <Terminal />
+                <h2 className="text-2xl font-bold">{cause.title}</h2>
+              </div>
+              <p className="mt-3 max-w-4xl text-slate-600">{cause.detail}</p>
+              <div className="mt-5 max-w-xl">
+                <ConfidenceBar value={cause.confidence} />
+              </div>
             </div>
-
-            <div className="rounded-xl bg-slate-950 px-5 py-3 text-white">
-              Confidence: {cause.confidence}
-            </div>
+            <Pill value={cause.risk} />
           </div>
         </div>
       ))}
@@ -242,13 +299,19 @@ function AIRecommendations() {
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center gap-3">
           <Lightbulb />
-          <h2 className="text-2xl font-bold">Recommended Remediation Plan</h2>
+          <h2 className="text-2xl font-bold">AI Recommendation Decision Matrix</h2>
         </div>
 
-        <div className="mt-5 space-y-4">
+        <div className="mt-6 space-y-4">
           {recommendations.map((item) => (
-            <div key={item} className="rounded-xl bg-slate-100 p-4 text-slate-700">
-              {item}
+            <div key={item.action} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
+                <div>
+                  <h3 className="font-bold">{item.action}</h3>
+                  <p className="text-sm text-slate-600">Owner: {item.owner} | ETA: {item.eta}</p>
+                </div>
+                <Pill value={item.impact} />
+              </div>
             </div>
           ))}
         </div>
@@ -258,15 +321,23 @@ function AIRecommendations() {
         <Zap size={28} />
         <h2 className="mt-4 text-2xl font-bold">AI Action Priority</h2>
         <p className="mt-2 text-slate-300">
-          The system recommends prioritizing retrieval validation first because
-          it has the highest confidence score and broadest user impact.
+          Prioritize retrieval validation first because it has the highest confidence score
+          and broadest user impact.
         </p>
 
-        <div className="mt-6 space-y-3 text-sm text-slate-300">
-          <p>✅ Validate knowledge base retrieval quality</p>
-          <p>✅ Compare prompt template versions</p>
-          <p>✅ Monitor latency after rollback</p>
-          <p>✅ Draft customer communication</p>
+        <div className="mt-6 grid gap-4">
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="text-sm text-slate-400">Primary Failure Vector</p>
+            <p className="text-xl font-bold">Retrieval Quality Drift</p>
+          </div>
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="text-sm text-slate-400">Recommended First Action</p>
+            <p className="text-xl font-bold">Run validation test set</p>
+          </div>
+          <div className="rounded-xl bg-slate-900 p-4">
+            <p className="text-sm text-slate-400">Expected Resolution Window</p>
+            <p className="text-xl font-bold">45–60 minutes</p>
+          </div>
         </div>
       </div>
     </div>
@@ -282,28 +353,49 @@ function ExecutiveSummary() {
           <h2 className="text-2xl font-bold">Executive Incident Summary</h2>
         </div>
 
-        <p className="mt-5 text-slate-700">
-          Enterprise Logistics Co. experienced degraded AI workflow recommendations
-          and delayed assistant responses impacting approximately 1,240 users.
-          Initial analysis indicates a likely knowledge base retrieval mismatch
-          following a recent content update. The recommended remediation plan is to
-          validate retrieval quality, rollback impacted prompt templates, monitor
-          latency, and provide customer-facing updates through the success team.
+        <p className="mt-5 text-slate-700 leading-relaxed">
+          Enterprise Logistics Co. experienced degraded AI workflow recommendations and delayed
+          assistant responses impacting approximately 1,240 users. Initial analysis indicates
+          a likely knowledge base retrieval mismatch following a recent content update. The
+          recommended remediation plan is to validate retrieval quality, rollback impacted
+          prompt templates, monitor latency, and provide customer-facing updates through the
+          success team.
         </p>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl bg-slate-100 p-4">
+            <Activity />
+            <p className="mt-3 text-sm text-slate-500">Business Impact</p>
+            <p className="font-bold">High</p>
+          </div>
+          <div className="rounded-xl bg-slate-100 p-4">
+            <Target />
+            <p className="mt-3 text-sm text-slate-500">Next Milestone</p>
+            <p className="font-bold">Validation</p>
+          </div>
+          <div className="rounded-xl bg-slate-100 p-4">
+            <Server />
+            <p className="mt-3 text-sm text-slate-500">System Area</p>
+            <p className="font-bold">Retrieval</p>
+          </div>
+        </div>
       </div>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center gap-3">
-          <MessageSquare />
-          <h2 className="text-2xl font-bold">Customer Communication Draft</h2>
+          <Mail />
+          <h2 className="text-2xl font-bold">Generated Customer Email</h2>
         </div>
 
-        <p className="mt-5 text-slate-700">
-          Our team has identified the likely source of the degraded recommendations
-          and is actively validating the affected workflow. We are applying a
-          remediation plan focused on retrieval quality, response latency, and prompt
-          consistency. We will provide the next update after validation is complete.
-        </p>
+        <div className="mt-5 rounded-xl bg-slate-100 p-5 text-slate-700 leading-relaxed">
+          <p className="font-bold">Subject: Update on AI Workflow Assistant Performance</p>
+          <p className="mt-4">
+            Our team has identified the likely source of the degraded recommendations and is
+            actively validating the affected workflow. We are applying a remediation plan focused
+            on retrieval quality, response latency, and prompt consistency. We will provide the next
+            update after validation is complete.
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -314,17 +406,44 @@ function ResolutionTimeline() {
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex items-center gap-3">
         <Workflow />
-        <h2 className="text-2xl font-bold">Resolution Timeline</h2>
+        <h2 className="text-2xl font-bold">Resolution Timeline Tracker</h2>
       </div>
 
       <div className="mt-6 space-y-4">
         {timeline.map((item) => (
-          <div key={item.time} className="flex gap-4 rounded-xl bg-slate-100 p-4">
+          <div key={item.time} className="grid gap-4 rounded-xl bg-slate-100 p-4 md:grid-cols-4 md:items-center">
             <div className="font-bold text-slate-950">{item.time}</div>
-            <div className="text-slate-700">{item.event}</div>
+            <div className="md:col-span-2 text-slate-700">{item.event}</div>
+            <div><Pill value={item.status} /></div>
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function EscalationMatrix() {
+  return (
+    <div className="grid gap-6">
+      {escalationItems.map((item) => (
+        <div key={item.level} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
+            <div>
+              <div className="mb-3">
+                <Pill value={item.level} />
+              </div>
+              <h2 className="text-2xl font-bold">{item.owner}</h2>
+              <p className="mt-3 text-slate-600">
+                <strong>Trigger:</strong> {item.trigger}
+              </p>
+              <p className="mt-2 text-slate-600">
+                <strong>Response:</strong> {item.response}
+              </p>
+            </div>
+            <ShieldAlert size={34} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -337,6 +456,7 @@ export default function App() {
     if (activePage === "AI Recommendations") return <AIRecommendations />;
     if (activePage === "Executive Summary") return <ExecutiveSummary />;
     if (activePage === "Resolution Timeline") return <ResolutionTimeline />;
+    if (activePage === "Escalation Matrix") return <EscalationMatrix />;
     return <IncidentIntake />;
   };
 
@@ -354,8 +474,8 @@ export default function App() {
 
           <p className="mt-3 max-w-4xl text-slate-600">
             Enterprise AI incident response platform for triaging customer issues,
-            surfacing root causes, generating remediation steps, and producing
-            executive-ready customer communication.
+            surfacing root causes, generating remediation steps, tracking escalation paths,
+            and producing executive-ready customer communication.
           </p>
         </div>
 
