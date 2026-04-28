@@ -449,6 +449,9 @@ function ChartCard() {
       <div className="flex items-center gap-2 mb-4">
         <BarChart3 size={20} className="text-cyan-300" />
         <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
+        <span className="ml-auto px-3 py-1 rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-300 text-xs font-bold">
+          • Live
+        </span>
       </div>
 
       <ResponsiveContainer width="100%" height={250}>
@@ -474,6 +477,9 @@ function RootCauseChart() {
       <div className="flex items-center gap-2 mb-4">
         <AlertTriangle size={20} className="text-lime-300" />
         <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
+        <span className="ml-auto px-3 py-1 rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-300 text-xs font-bold">
+            • Live
+        </span>
       </div>
 
       <ResponsiveContainer width="100%" height={250}>
