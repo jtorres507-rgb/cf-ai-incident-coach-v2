@@ -183,12 +183,27 @@ function InfoCard({ title, value }) {
 }
 function PageHeader({ title, subtitle }) {
   return (
-    <div className="mb-8">
-      <p className="uppercase text-sm font-bold tracking-widest text-slate-500 mb-2">
-        AI INCIDENT RESOLUTION PORTFOLIO PROJECT
+    <div className="mb-8 rounded-3xl bg-gradient-to-r from-white to-slate-50 border border-slate-200 p-8 shadow-[0_10px_30px_rgba(2,8,32,0.08)]">
+      <p className="text-xs font-bold tracking-[0.22em] text-slate-400 uppercase mb-3">
+        AI Incident Resolution Portfolio Project
       </p>
-      <h1 className="text-5xl font-bold">{title}</h1>
-      <p className="text-slate-600 mt-3 text-lg max-w-5xl leading-8">{subtitle}</p>
+
+      <h1 className="text-5xl font-black tracking-tight text-[#020826] mb-3">
+        {title}
+      </h1>
+
+      <p className="text-lg text-slate-600 max-w-4xl leading-8">
+        {subtitle}
+      </p>
+
+      <div className="mt-5 flex gap-3">
+        <span className="px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 text-xs font-bold">
+          LIVE INCIDENT SIMULATION
+        </span>
+        <span className="px-4 py-1 rounded-full bg-lime-100 text-lime-700 text-xs font-bold">
+          ENTERPRISE AI OPS
+        </span>
+      </div>
     </div>
   );
 }
