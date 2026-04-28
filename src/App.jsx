@@ -129,15 +129,15 @@ const renderWorkspace = () => {
 
         <div className="mt-10 bg-[#09123d] rounded-2xl p-4 text-slate-200 text-sm leading-6">
           <div className="font-bold mb-2">PORTFOLIO DEMO</div>
-          React + Tailwind + Recharts + Vercel SaaS simulation of AI incident triage,
-          observability monitoring, customer communication generation, and executive response workflows.
+          OpenAI-style enterprise AI success console simulating customer incident triage, model behavior analysis, retrieval health monitoring, 
+          SLA risk management, remediation planning, and executive communication workflows.
         </div>
       </aside>
 
       <main className="flex-1 p-8 overflow-y-auto">
         {renderWorkspace()}
       </main>
-    </div>      
+    </div>
   );
 }
 
