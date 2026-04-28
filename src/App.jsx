@@ -537,13 +537,100 @@ function AIRecommendations() {
         subtitle="Recommended remediation sequence for engineering, customer success, and executive stakeholder alignment."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-        <h3 className="font-bold text-2xl mb-4">Prioritized Recovery Actions</h3>
-        <ul className="space-y-4 text-lg text-slate-700 leading-8">
-          {aiActions.map((action) => (
-            <li key={action}>• {action}</li>
-          ))}
-        </ul>
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        <CommandCard icon={<Zap />} title="Remediation Queue" value="4 Actions" />
+        <CommandCard icon={<Clock />} title="Est. Recovery" value="32 min" />
+        <CommandCard icon={<Users />} title="Teams Engaged" value="3" />
+        <CommandCard icon={<ShieldAlert />} title="Priority" value="Critical" dark />
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="col-span-2 bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-slate-800 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-6 opacity-10 text-lime-300 text-[90px] font-black">AI</div>
+
+          <div className="flex items-center mb-5">
+            <h3 className="font-black text-3xl">Prioritized Recovery Actions</h3>
+            <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+              • ACTIVE
+            </span>
+          </div>
+
+          <div className="space-y-5 text-slate-300 leading-7">
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Immediately reroute prompt traffic to lower-latency vector retrieval cluster.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Flush prompt queue saturation and restart delayed assistant orchestration workers.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Increase retrieval timeout threshold temporarily during customer peak load.
+            </div>
+            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+              Trigger customer communication workflow if latency exceeds 900ms after 30 minutes.
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white relative overflow-hidden">
+          <div className="absolute right-6 top-5 opacity-10 text-cyan-300 text-[72px] font-black">01</div>
+
+          <h3 className="font-black text-2xl mb-4 text-[#020826]">AI Confidence</h3>
+          <div className="text-6xl font-black text-lime-400 mb-3">94%</div>
+          <p className="text-slate-600 leading-7">
+            Recommendation engine confidence indicates this remediation sequence has the highest SLA preservation probability.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
+          <h3 className="font-black text-2xl mb-5 text-[#020826]">Team Assignment Matrix</h3>
+
+          <div className="space-y-4">
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+              <p className="text-xs uppercase text-slate-400 font-bold">Engineering</p>
+              <p className="font-bold text-[#020826] mt-1">Vector retrieval failover + prompt queue flush</p>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+              <p className="text-xs uppercase text-slate-400 font-bold">Customer Success</p>
+              <p className="font-bold text-[#020826] mt-1">Prepare 30-minute cadence customer updates</p>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+              <p className="text-xs uppercase text-slate-400 font-bold">Executive Lead</p>
+              <p className="font-bold text-[#020826] mt-1">Monitor SLA breach threshold and escalation hold</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d]">
+          <h3 className="font-black text-2xl mb-5">Projected Outcome</h3>
+
+          <div className="space-y-5">
+            <div>
+              <p className="text-slate-400 text-sm">Latency Recovery Probability</p>
+              <div className="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div className="w-[88%] h-2 rounded-full bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-slate-400 text-sm">SLA Preservation Probability</p>
+              <div className="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div className="w-[81%] h-2 rounded-full bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-slate-400 text-sm">Customer Satisfaction Stabilization</p>
+              <div className="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div className="w-[76%] h-2 rounded-full bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
