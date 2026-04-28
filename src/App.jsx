@@ -146,7 +146,7 @@ function CommandCard({ icon, title, value, dark }) {
     <div
       className={`${
         dark ? "bg-[#020826] text-white" : "bg-white"
-      } rounded-3xl shadow-md p-5 border border-slate-200`}
+      } rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border`}
     >
       <div className="mb-3">{icon}</div>
       <p className="text-slate-500 text-sm">{title}</p>
@@ -210,7 +210,7 @@ function IncidentIntake() {
         <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
       </div>
 
-      <section className="bg-white rounded-3xl shadow-md p-6 mb-6 border border-slate-200">
+      <section className="bg-white rounded-3xl shadow-[0_10px_30px_rgba(2,8,32,0.12)] p-6 mb-6 border border-slate-200">
         <p className="text-slate-500 font-bold">INC-AI-0427</p>
         <h2 className="text-3xl font-bold mt-2">Enterprise Logistics Co.</h2>
         <p className="text-slate-600 text-base mt-3">
@@ -249,7 +249,7 @@ function AgentAnalysis() {
 
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
-        <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-md">
+        <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)]">
           <h3 className="font-bold text-2xl mb-4">Agent Reasoning Trace</h3>
           <ul className="space-y-4 text-slate-300 leading-7">
             <li>• Prompt success degraded during customer peak load.</li>
@@ -273,7 +273,7 @@ function RootCauseEngine() {
 
       <div className="grid grid-cols-2 gap-6">
         <RootCauseChart />
-        <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+        <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
           <h3 className="font-bold text-2xl mb-4">Root Cause Findings</h3>
           <ul className="space-y-4 text-slate-700 leading-7">
             {rootCauseFindings.map((finding) => (
@@ -294,7 +294,7 @@ function AIRecommendations() {
         subtitle="Recommended remediation sequence for engineering, customer success, and executive stakeholder alignment."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
         <h3 className="font-bold text-2xl mb-4">Prioritized Recovery Actions</h3>
         <ul className="space-y-4 text-lg text-slate-700 leading-8">
           {aiActions.map((action) => (
@@ -314,7 +314,7 @@ function ExecutiveSummary() {
         subtitle="Leadership-ready incident brief translating technical failure signals into customer risk, business impact, and recovery status."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
         <h3 className="font-bold text-2xl mb-4">Executive Incident Brief</h3>
         <p className="text-slate-700 leading-8 text-lg">
           Enterprise Logistics Co. is experiencing elevated latency and degraded recommendation quality in its AI Workflow Assistant.
@@ -334,7 +334,7 @@ function ResolutionTimeline() {
         subtitle="Chronological incident timeline showing detection, diagnosis, remediation planning, and customer communication milestones."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
         <h3 className="font-bold text-2xl mb-4">Incident Timeline</h3>
         <div className="space-y-4">
           {timelineEvents.map((event) => (
@@ -358,7 +358,7 @@ function EscalationMatrix() {
 
       <div className="grid grid-cols-4 gap-4">
         {escalationOwners.map((item) => (
-          <div key={item.owner} className="bg-white rounded-3xl p-5 shadow-md border border-slate-200">
+          <div key={item.owner} className="bg-white rounded-3xl p-5 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
             <p className="text-slate-500 text-sm">Owner</p>
             <h3 className="font-bold text-xl">{item.owner}</h3>
             <p className="text-slate-500 text-sm mt-4">SLA</p>
@@ -381,7 +381,7 @@ function CustomerCommsAI() {
       />
 
       <div className="grid grid-cols-2 gap-6">
-        <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-md">
+        <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)]">
           <h3 className="font-bold text-2xl mb-4">Generated Customer Update</h3>
           <p className="text-slate-300 leading-8">
             Our engineering team has identified elevated latency affecting AI workflow recommendations.
@@ -390,7 +390,7 @@ function CustomerCommsAI() {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+        <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
           <h3 className="font-bold text-2xl mb-4">Internal Engineering Note</h3>
           <p className="text-slate-700 leading-8">
             Focus response on retrieval queue saturation, vector timeout concentration, and prompt routing stability.
@@ -404,7 +404,7 @@ function CustomerCommsAI() {
 
 function ChartCard() {
   return (
-    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-xl border border-slate-800">
+    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-[0_14px_35px_rgba(2,8,32,0.18)] border border-slate-800">
       <div className="flex items-center gap-2 mb-4">
         <BarChart3 size={20} className="text-cyan-300" />
         <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
@@ -429,7 +429,7 @@ function ChartCard() {
 
 function RootCauseChart() {
   return (
-    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-xl border border-slate-800">
+    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-800">
       <div className="flex items-center gap-2 mb-4">
         <AlertTriangle size={20} className="text-lime-300" />
         <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
