@@ -354,82 +354,88 @@ function AgentAnalysis() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        {agentHealth.map((item) => (
-          <CommandCard
-            key={item.metric}
-            icon={<Brain />}
-            title={item.metric}
-            value={item.score}
-          />
-        ))}
-      </div>
+      {agentHealth.map((item, i) => (
+      <CommandCard
+        key={item.metric}
+        icon={<Brain />}
+        title={item.metric}
+        value={item.score}
+        dark={i === 0}
+      />
+      ))}
+    </div>
 
       <div className="grid grid-cols-3 gap-6 mb-6">
 
-        <div className="col-span-2 bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+  <div className="col-span-2 relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+    <div className="absolute right-8 top-6 opacity-10 text-cyan-300 text-[90px] font-black">AI</div>
 
-          <div className="flex items-center mb-5">
-            <Brain className="text-cyan-300" size={22} />
-            <h3 className="font-black text-2xl ml-2">AI Reasoning Trace</h3>
-            <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
-              ● ACTIVE
-            </span>
-          </div>
+    <div className="flex items-center mb-5">
+      <Brain className="text-cyan-300" size={22} />
+      <h3 className="font-bold text-2xl ml-2">AI Reasoning Trace</h3>
+      <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+        • ACTIVE
+      </span>
+    </div>
 
-          <div className="space-y-4 text-slate-300 leading-7">
-            <div className="border-l-2 border-cyan-400 pl-4">
-              Prompt success degraded during customer peak load evaluation.
-            </div>
-            <div className="border-l-2 border-cyan-400 pl-4">
-              Retrieval latency increased before customer-facing recommendation failures.
-            </div>
-            <div className="border-l-2 border-cyan-400 pl-4">
-              Fallback usage increased while model uptime remained stable.
-            </div>
-            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
-              Agent confidence suggests infrastructure bottleneck over model outage.
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-[30px] p-6 shadow-[0_12px_35px_rgba(2,8,32,0.10)] border border-white">
-          <h3 className="font-black text-xl mb-5 text-[#020826]">Signal Confidence</h3>
-
-          <div className="space-y-5">
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Prompt Failure</span>
-                <span className="font-bold">91%</span>
-              </div>
-              <div className="h-2 rounded-full bg-slate-200">
-                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[91%]"></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Retrieval Anomaly</span>
-                <span className="font-bold">84%</span>
-              </div>
-              <div className="h-2 rounded-full bg-slate-200">
-                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[84%]"></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Latency Correlation</span>
-                <span className="font-bold">77%</span>
-              </div>
-              <div className="h-2 rounded-full bg-slate-200">
-                <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <div className="space-y-5 text-slate-300 leading-7">
+      <div className="border-l-2 border-cyan-400 pl-4">
+        Prompt success degraded during customer peak load evaluation.
       </div>
+      <div className="border-l-2 border-cyan-400 pl-4">
+        Retrieval latency increased before customer-facing recommendation failures.
+      </div>
+      <div className="border-l-2 border-cyan-400 pl-4">
+        Fallback usage increased while model uptime remained stable.
+      </div>
+      <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+        Agent confidence suggests infrastructure bottleneck over model outage.
+      </div>
+    </div>
+  </div>
+
+  <div className="relative bg-white rounded-[30px] p-7 shadow-[0_12px_35px_rgba(2,8,32,0.10)] border border-white overflow-hidden">
+    <div className="absolute right-6 top-5 opacity-10 text-[#020826] text-[80px] font-black">01</div>
+
+    <h3 className="font-black text-2xl text-[#020826] mb-5">Signal Confidence</h3>
+
+    <div className="space-y-6">
+
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Prompt Failure</span>
+          <span className="font-bold">91%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[91%]"></div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Retrieval Anomaly</span>
+          <span className="font-bold">84%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[84%]"></div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Latency Correlation</span>
+          <span className="font-bold">77%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
