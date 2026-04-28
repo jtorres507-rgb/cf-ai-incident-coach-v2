@@ -292,8 +292,7 @@ function IncidentIntake() {
         <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
       </div>
 
-      <section className="relative overflow-hidden bg-white/90 backdrop-blur rounded-[30px] shadow-[0_16px_40px_rgba(2,8,32,0.10)] p-7 mb-6 border border-white">
-
+      <section className="group relative overflow-hidden bg-white/95 backdrop-blur rounded-[30px] border border-white/90 p-7 mb-6 shadow-[0_12px_35px_rgba(2,8,32,0.10)]">
   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
   <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[90px] font-black">AI</div>
 
@@ -308,31 +307,29 @@ function IncidentIntake() {
   </p>
 
   <div className="grid grid-cols-4 gap-4">
-    
-    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+    <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 shadow-sm">
       <Layers3 className="text-cyan-500 mb-2" size={20} />
-      <p className="text-xs text-slate-400 font-bold uppercase">Product Area</p>
-      <p className="font-bold text-[#020826] mt-1">AI Workflow Assistant</p>
+      <p className="text-[11px] text-slate-400 font-black uppercase tracking-[0.08em]">Product Area</p>
+      <p className="font-black text-[#020826] mt-1">AI Workflow Assistant</p>
     </div>
 
-    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+    <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 shadow-sm">
       <User2 className="text-cyan-500 mb-2" size={20} />
-      <p className="text-xs text-slate-400 font-bold uppercase">Reported By</p>
-      <p className="font-bold text-[#020826] mt-1">Customer Success Team</p>
+      <p className="text-[11px] text-slate-400 font-black uppercase tracking-[0.08em]">Reported By</p>
+      <p className="font-black text-[#020826] mt-1">Customer Success Team</p>
     </div>
 
-    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+    <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 shadow-sm">
       <Clock3 className="text-cyan-500 mb-2" size={20} />
-      <p className="text-xs text-slate-400 font-bold uppercase">Time Open</p>
-      <p className="font-bold text-[#020826] mt-1">47 minutes</p>
+      <p className="text-[11px] text-slate-400 font-black uppercase tracking-[0.08em]">Time Open</p>
+      <p className="font-black text-[#020826] mt-1">47 minutes</p>
     </div>
 
-    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+    <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 shadow-sm">
       <Users className="text-cyan-500 mb-2" size={20} />
-      <p className="text-xs text-slate-400 font-bold uppercase">Affected Users</p>
-      <p className="font-bold text-[#020826] mt-1">1,240</p>
+      <p className="text-[11px] text-slate-400 font-black uppercase tracking-[0.08em]">Affected Users</p>
+      <p className="font-black text-[#020826] mt-1">1,240</p>
     </div>
-
   </div>
 </section>
 
