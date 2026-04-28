@@ -404,16 +404,23 @@ function CustomerCommsAI() {
 
 function ChartCard() {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-xl border border-slate-800">
       <div className="flex items-center gap-2 mb-4">
-        <BarChart3 size={20} />
+        <BarChart3 size={20} className="text-cyan-300" />
         <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
       </div>
+
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={trendData}>
-          <XAxis dataKey="day" />
+          <XAxis dataKey="day" stroke="#94a3b8" />
           <Tooltip />
-          <Area type="monotone" dataKey="latency" stroke="#111827" fill="#cbd5e1" />
+          <Area
+            type="monotone"
+            dataKey="latency"
+            stroke="#22d3ee"
+            fill="#164e63"
+            strokeWidth={3}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>
@@ -422,17 +429,18 @@ function ChartCard() {
 
 function RootCauseChart() {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-xl border border-slate-800">
       <div className="flex items-center gap-2 mb-4">
-        <AlertTriangle size={20} />
+        <AlertTriangle size={20} className="text-lime-300" />
         <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
       </div>
+
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={confidenceData} layout="vertical">
           <XAxis type="number" hide />
-          <YAxis dataKey="name" type="category" width={140} />
+          <YAxis dataKey="name" type="category" width={140} stroke="#cbd5e1" />
           <Tooltip />
-          <Bar dataKey="value" fill="#020826" />
+          <Bar dataKey="value" fill="#a3e635" radius={[0, 10, 10, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
