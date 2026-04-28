@@ -492,56 +492,74 @@ function RootCauseEngine() {
           <RootCauseChart />
         </div>
 
-        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+        <div className="relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-6 opacity-10 text-lime-300 text-[88px] font-black">87</div>
+
           <h3 className="font-black text-2xl mb-5">Primary Diagnosis</h3>
 
-          <div className="text-5xl font-black text-lime-300 mb-2">87%</div>
+          <div className="text-6xl font-black text-lime-300 mb-3">87%</div>
+
           <p className="text-slate-300 leading-7">
             Confidence that degraded retrieval latency is the primary source of customer-facing recommendation failures.
           </p>
+
+          <div className="mt-6 h-2 rounded-full bg-white/10 overflow-hidden">
+            <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-lime-300 w-[87%]"></div>
+          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-6">
-        <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
-          <h3 className="font-black text-2xl mb-5 text-[#020826]">Root Cause Findings</h3>
+        <div className="relative bg-white/95 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[86px] font-black">AI</div>
+
+          <h3 className="font-black text-2xl mb-5 text-[#020826]">
+            Root Cause Findings
+          </h3>
 
           <div className="space-y-4">
             {rootCauseFindings.map((finding) => (
-              <div key={finding} className="border-l-4 border-cyan-400 bg-slate-50 rounded-2xl p-4 text-slate-700 font-semibold">
+              <div
+                key={finding}
+                className="border-l-4 border-cyan-400 bg-slate-50/90 rounded-2xl p-4 text-slate-700 font-semibold shadow-sm"
+              >
                 {finding}
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+        <div className="relative bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-lime-300 via-cyan-300 to-transparent"></div>
+          <div className="absolute right-8 top-6 opacity-10 text-lime-300 text-[82px] font-black">AI</div>
+
           <h3 className="font-black text-2xl mb-5">Failure Vector Priority</h3>
 
-          <div className="space-y-5">
+          <div className="space-y-6">
             <div>
-              <div className="flex justify-between text-sm mb-1">
+              <div className="flex justify-between text-sm mb-2">
                 <span>Vector DB Latency</span>
                 <span className="text-lime-300 font-bold">Critical</span>
               </div>
               <div className="h-2 rounded-full bg-white/10">
-                <div className="h-2 rounded-full bg-lime-300 w-[92%]"></div>
+                <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[92%]"></div>
               </div>
             </div>
 
             <div>
-              <div className="flex justify-between text-sm mb-1">
+              <div className="flex justify-between text-sm mb-2">
                 <span>Prompt Queue Saturation</span>
                 <span className="text-cyan-300 font-bold">High</span>
               </div>
               <div className="h-2 rounded-full bg-white/10">
-                <div className="h-2 rounded-full bg-cyan-300 w-[76%]"></div>
+                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[76%]"></div>
               </div>
             </div>
 
             <div>
-              <div className="flex justify-between text-sm mb-1">
+              <div className="flex justify-between text-sm mb-2">
                 <span>Model Saturation</span>
                 <span className="text-slate-300 font-bold">Moderate</span>
               </div>
@@ -875,63 +893,6 @@ function ChartCard() {
             }}
           />
         </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  );
-}
-
-function RootCauseChart() {
-  return (
-    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-lime-300 to-transparent"></div>
-
-      <div className="flex items-center gap-2 mb-4">
-        <AlertTriangle size={20} className="text-lime-300" />
-        <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
-        <span className="ml-auto px-3 py-1 rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-300 text-xs font-bold">
-          • Live
-        </span>
-      </div>
-
-      <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={confidenceData} layout="vertical" margin={{ top: 10, right: 35, left: 20, bottom: 10 }}>
-          <CartesianGrid stroke="#1e2a44" strokeDasharray="3 3" />
-          <XAxis
-            type="number"
-            domain={[0, 100]}
-            stroke="#cbd5e1"
-            tickFormatter={(value) => `${value}%`}
-          />
-          <YAxis
-            dataKey="name"
-            type="category"
-            width={140}
-            stroke="#cbd5e1"
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "#020826",
-              border: "1px solid #1e2a44",
-              borderRadius: "12px",
-              color: "#fff",
-            }}
-            formatter={(value) => [`${value}%`, "Confidence"]}
-          />
-          <Bar
-            dataKey="value"
-            fill="#a3e635"
-            radius={[0, 10, 10, 0]}
-            barSize={28}
-          >
-            <LabelList
-              dataKey="value"
-              position="right"
-              formatter={(value) => `${value}%`}
-              fill="#ffffff"
-              fontWeight={800}
-            />
-          </Bar>
-        </BarChart>
       </ResponsiveContainer>
     </div>
   );
