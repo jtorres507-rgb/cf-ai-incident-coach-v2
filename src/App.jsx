@@ -24,6 +24,7 @@ import {
   XAxis,
   Tooltip,
   BarChart,
+  CartesianGrid,
   Bar,
   YAxis,
 } from "recharts";
@@ -801,8 +802,9 @@ function CustomerCommsAI() {
 
 function ChartCard() {
   return (
-    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)]">
-    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-transparent"></div>  
+    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-transparent"></div>
+
       <div className="flex items-center gap-2 mb-4">
         <BarChart3 size={20} className="text-cyan-300" />
         <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
@@ -811,16 +813,40 @@ function ChartCard() {
         </span>
       </div>
 
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={280}>
         <AreaChart data={trendData}>
-          <XAxis dataKey="day" stroke="#94a3b8" />
-          <Tooltip />
+          <CartesianGrid stroke="#1e2a44" strokeDasharray="3 3" />
+          <XAxis dataKey="day" stroke="#cbd5e1" />
+          <YAxis
+            stroke="#cbd5e1"
+            tickFormatter={(value) => `${value * 400}ms`}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#020826",
+              border: "1px solid #1e2a44",
+              borderRadius: "12px",
+              color: "#fff",
+            }}
+          />
           <Area
             type="monotone"
             dataKey="latency"
-            stroke="#22d3ee"
+            stroke="#67e8f9"
             fill="#164e63"
-            strokeWidth={3}
+            strokeWidth={4}
+            dot={{
+              r: 6,
+              fill: "#67e8f9",
+              stroke: "#cffafe",
+              strokeWidth: 2,
+            }}
+            activeDot={{
+              r: 8,
+              fill: "#67e8f9",
+              stroke: "#ffffff",
+              strokeWidth: 3,
+            }}
           />
         </AreaChart>
       </ResponsiveContainer>
