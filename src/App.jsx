@@ -187,13 +187,18 @@ function InfoCard({ title, value }) {
 }
 function PageHeader({ title, subtitle }) {
   return (
-    <div className="mb-8 rounded-[32px] bg-gradient-to-r from-white via-white to-slate-50 border border-white/80 p-8 shadow-[0_10px_30px_rgba(2,8,32,0.08)] relative overflow-hidden">
+    <div className="relative overflow-hidden mb-8 rounded-[32px] bg-gradient-to-r from-white via-slate-50 to-slate-100 border border-slate-200 p-8 shadow-[0_18px_45px_rgba(2,8,32,0.12)]">
       <div className="absolute left-0 top-10 h-32 w-1 rounded-r-full bg-gradient-to-b from-cyan-400 to-lime-400"></div>
       <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-cyan-100/40 to-transparent blur-2xl"></div>
-      <p className="text-xs font-bold tracking-[0.22em] text-slate-400 uppercase mb-3">
+      <p className="text-xs font-bold tracking-[0.28em] text-slate-400 uppercase mb-4">
         AI Incident Resolution Portfolio Project
       </p>
-
+    <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm">
+      <span className="h-2 w-2 rounded-full bg-lime-400 animate-pulse"></span>
+      <span className="text-[11px] font-bold text-slate-600 uppercase tracking-[0.15em]">
+        Enterprise Active
+      </span>
+    </div>
       <h1 className="text-5xl font-black tracking-tight text-[#020826] mb-3">
         {title}
       </h1>
