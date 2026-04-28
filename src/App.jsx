@@ -365,8 +365,7 @@ function AgentAnalysis() {
       ))}
     </div>
 
-      <div className="grid grid-cols-3 gap-6 mb-6">
-
+  <div className="grid grid-cols-3 gap-6 mb-6">
   <div className="col-span-2 relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] overflow-hidden">
     <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
     <div className="absolute right-8 top-6 opacity-10 text-cyan-300 text-[90px] font-black">AI</div>
@@ -423,20 +422,21 @@ function AgentAnalysis() {
       </div>
 
       <div>
-        <div className="flex justify-between text-sm mb-1">
-          <span>Latency Correlation</span>
-          <span className="font-bold">77%</span>
+          <div className="flex justify-between text-sm mb-1">
+            <span>Latency Correlation</span>
+            <span className="font-bold">77%</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-200">
+            <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
+          </div>
         </div>
-        <div className="h-2 rounded-full bg-slate-200">
-          <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
-        </div>
-      </div>
 
+      </div>
     </div>
   </div>
 
+  <div className="grid grid-cols-2 gap-6">
 </div>
-
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
 
