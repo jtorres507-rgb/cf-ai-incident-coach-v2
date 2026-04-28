@@ -440,25 +440,43 @@ function AgentAnalysis() {
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
 
-        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
-          <div className="flex items-center mb-5">
-            <Zap className="text-lime-300" size={20} />
-            <h3 className="font-black text-2xl ml-2">Autonomous AI Decision</h3>
-          </div>
+ <div className="relative bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800 overflow-hidden">
+  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+  <div className="absolute right-8 top-6 opacity-10 text-lime-300 text-[88px] font-black">AI</div>
 
-          <div className="space-y-4 text-slate-300 leading-7">
-            <div>• Escalation Threshold: Not Triggered</div>
-            <div>• Model Degradation: Low Probability</div>
-            <div>• Retrieval Timeout Events: Elevated</div>
-            <div>• Infrastructure Saturation: Moderate</div>
-            <div className="text-lime-300 font-bold">
-              • Recommended Next Action: Route traffic to backup vector node.
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  <div className="flex items-center mb-5">
+    <Zap className="text-lime-300" size={20} />
+    <h3 className="font-bold text-2xl ml-2">Autonomous AI Decision</h3>
+    <span className="ml-auto px-3 py-1 rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-300 text-xs font-bold">
+      • ACTIVE
+    </span>
+  </div>
+
+  <div className="space-y-4 text-slate-300 leading-7">
+    <div className="border-l-2 border-cyan-400 pl-4">
+      Escalation Threshold: Not Triggered
+    </div>
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      Model Degradation: Low Probability
+    </div>
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      Retrieval Timeout Events: Elevated
+    </div>
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      Infrastructure Saturation: Moderate
+    </div>
+
+    <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+      Recommended Next Action: Route traffic to backup vector node.
+    </div>
+  </div>
+</div>
+</div>
+</>
+);
 }
 
 function RootCauseEngine() {
@@ -810,9 +828,9 @@ function CustomerCommsAI() {
 
 function ChartCard() {
   return (
-    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)] relative overflow-hidden">
+    <div className="group relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-transparent"></div>
-
+      <div className="absolute right-8 top-5 opacity-10 text-cyan-300 text-[82px] font-black">02</div>
       <div className="flex items-center gap-2 mb-4">
         <BarChart3 size={20} className="text-cyan-300" />
         <h3 className="font-bold text-2xl">Latency / Failure Trend</h3>
