@@ -116,11 +116,11 @@ const renderWorkspace = () => {
             <button
               key={item}
               onClick={() => setActive(item)}
-              className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition ${
-                active === item
-                  ? "bg-white text-black"
-                  : "hover:bg-slate-800 text-slate-200"
-              }`}
+              className={`w-full text-left px-5 py-3 rounded-xl font-semibold transition-all duration-300 ${
+  active === item
+    ? "bg-white text-black shadow-lg"
+    : "hover:bg-slate-800 hover:translate-x-1 text-slate-200"
+}`}
             >
               {item}
             </button>
