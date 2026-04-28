@@ -347,26 +347,105 @@ function AgentAnalysis() {
     <>
       <PageHeader
         title="Agent Analysis"
-        subtitle="Diagnostic workspace for evaluating prompt quality, retrieval behavior, latency signals, and AI system confidence."
+        subtitle="Diagnostic workspace for evaluating prompt quality, retrieval behavior, latency signals, and autonomous AI decision confidence."
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
         {agentHealth.map((item) => (
-          <CommandCard key={item.metric} icon={<Brain />} title={item.metric} value={item.score} />
+          <CommandCard
+            key={item.metric}
+            icon={<Brain />}
+            title={item.metric}
+            value={item.score}
+          />
         ))}
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-6">
+
+        <div className="col-span-2 bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+
+          <div className="flex items-center mb-5">
+            <Brain className="text-cyan-300" size={22} />
+            <h3 className="font-black text-2xl ml-2">AI Reasoning Trace</h3>
+            <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+              ● ACTIVE
+            </span>
+          </div>
+
+          <div className="space-y-4 text-slate-300 leading-7">
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Prompt success degraded during customer peak load evaluation.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Retrieval latency increased before customer-facing recommendation failures.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Fallback usage increased while model uptime remained stable.
+            </div>
+            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+              Agent confidence suggests infrastructure bottleneck over model outage.
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-[30px] p-6 shadow-[0_12px_35px_rgba(2,8,32,0.10)] border border-white">
+          <h3 className="font-black text-xl mb-5 text-[#020826]">Signal Confidence</h3>
+
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Prompt Failure</span>
+                <span className="font-bold">91%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[91%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Retrieval Anomaly</span>
+                <span className="font-bold">84%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[84%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Latency Correlation</span>
+                <span className="font-bold">77%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
-        <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#0f1b3d] relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-transparent"></div>
-          <h3 className="font-bold text-2xl mb-4">Agent Reasoning Trace</h3>
-          <ul className="space-y-4 text-slate-300 leading-7">
-            <li>• Prompt success degraded during customer peak load.</li>
-            <li>• Retrieval latency increased before customer-facing failures.</li>
-            <li>• Fallback usage increased but model uptime remained stable.</li>
-            <li>• Likely issue: infrastructure bottleneck, not model outage.</li>
-          </ul>
+
+        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+          <div className="flex items-center mb-5">
+            <Zap className="text-lime-300" size={20} />
+            <h3 className="font-black text-2xl ml-2">Autonomous AI Decision</h3>
+          </div>
+
+          <div className="space-y-4 text-slate-300 leading-7">
+            <div>• Escalation Threshold: Not Triggered</div>
+            <div>• Model Degradation: Low Probability</div>
+            <div>• Retrieval Timeout Events: Elevated</div>
+            <div>• Infrastructure Saturation: Moderate</div>
+            <div className="text-lime-300 font-bold">
+              • Recommended Next Action: Route traffic to backup vector node.
+            </div>
+          </div>
         </div>
       </div>
     </>
