@@ -191,15 +191,14 @@ function InfoCard({ title, value }) {
 function PageHeader({ title, subtitle }) {
   return (
     <div className="relative overflow-hidden mb-8 rounded-[32px] bg-gradient-to-r from-white via-slate-50 to-slate-100 border border-slate-200 p-8 shadow-[0_18px_45px_rgba(2,8,32,0.12)]">
-      <div className="absolute left-0 top-10 h-32 w-1 rounded-r-full bg-gradient-to-b from-cyan-400 to-lime-400"></div>
-    <div className="absolute right-6 bottom-4 opacity-20 text-cyan-300 text-[10px] leading-3 font-bold">
-        · · · · · · · · · ·<br/>
-        · · · · · · · · · ·<br/>
-        · · · · · · · · · ·<br/>
-        · · · · · · · · · ·<br/>
-        · · · · · · · · · ·
-    </div>  
+      <div className="absolute left-0 top-10 h-32 w-1 rounded-r-full bg-gradient-to-b from-cyan-400 to-lime-400"></div>  
       <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-cyan-100/40 to-transparent blur-2xl"></div>
+      <div className="absolute right-8 bottom-5 opacity-20 text-cyan-300 text-[10px] leading-3 font-bold">
+          • • • • • • • • • •<br/>
+          • • • • • • • • • •<br/>
+          • • • • • • • • • •<br/>
+         • • • • • • • • • •
+      </div>
       <p className="text-xs font-bold tracking-[0.28em] text-slate-400 uppercase mb-4">
         AI Incident Resolution Portfolio Project
       </p>
@@ -231,18 +230,45 @@ function PageHeader({ title, subtitle }) {
 
 function HealthMonitor() {
   return (
-    <div className="bg-[#020826] text-white rounded-2xl px-6 py-5 shadow-xl">
-      <div className="flex items-center gap-3 mb-4">
-        <Activity size={22} />
-        <span className="font-bold text-lg">AI HEALTH MONITOR</span>
-      </div>
-      <div className="space-y-3 text-sm">
-        <div className="flex justify-between"><span>Model Uptime</span><span>99.2%</span></div>
-        <div className="flex justify-between"><span>Prompt Success</span><span>89%</span></div>
-        <div className="flex justify-between"><span>Retrieval Health</span><span>Stable</span></div>
-        <div className="flex justify-between"><span>API Queue</span><span>Normal</span></div>
-      </div>
+    <div className="relative overflow-hidden bg-[#020826] text-white rounded-[28px] px-7 py-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d]">
+
+  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-lime-400/5"></div>
+
+  <div className="relative flex items-center mb-5">
+    <div className="flex items-center gap-3">
+      <Activity size={22} className="text-white" />
+      <span className="font-black text-2xl">AI HEALTH MONITOR</span>
     </div>
+
+    <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+      ● LIVE
+    </span>
+  </div>
+
+  <div className="relative space-y-4 text-sm">
+
+    <div className="flex justify-between border-b border-white/5 pb-2">
+      <span className="text-slate-300">Model Uptime</span>
+      <span className="text-cyan-300 font-bold">99.2%</span>
+    </div>
+
+    <div className="flex justify-between border-b border-white/5 pb-2">
+      <span className="text-slate-300">Prompt Success</span>
+      <span className="text-cyan-300 font-bold">89%</span>
+    </div>
+
+    <div className="flex justify-between border-b border-white/5 pb-2">
+      <span className="text-slate-300">Retrieval Health</span>
+      <span className="text-lime-300 font-bold">Stable</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span className="text-slate-300">API Queue</span>
+      <span className="text-lime-300 font-bold">Normal</span>
+    </div>
+
+  </div>
+</div>
   );
 }
 
