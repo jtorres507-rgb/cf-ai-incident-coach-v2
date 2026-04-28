@@ -9,6 +9,9 @@ import {
   Siren,
   Users,
   Zap,
+  Layers3,
+  User2,
+  Clock3,
   Activity,
   BarChart3,
   Target,
@@ -261,20 +264,49 @@ function IncidentIntake() {
         <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
       </div>
 
-      <section className="group bg-white/90 backdrop-blur rounded-[30px] border border-white/80 p-7 mb-6 shadow-[0_12px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-        <p className="text-slate-500 font-bold">INC-AI-0427</p>
-        <h2 className="text-3xl font-bold mt-2">Enterprise Logistics Co.</h2>
-        <p className="text-slate-600 text-base mt-3">
-          Customer reports degraded AI workflow recommendations and delayed assistant responses across operations support teams.
-        </p>
+      <section className="relative overflow-hidden bg-white/90 backdrop-blur rounded-[30px] shadow-[0_16px_40px_rgba(2,8,32,0.10)] p-7 mb-6 border border-white">
 
-        <div className="grid grid-cols-4 gap-4 mt-6">
-          <InfoCard title="Product Area" value="AI Workflow Assistant" />
-          <InfoCard title="Reported By" value="Customer Success Team" />
-          <InfoCard title="Time Open" value="47 minutes" />
-          <InfoCard title="Affected Users" value="1,240" />
-        </div>
-      </section>
+  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+  <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[90px] font-black">AI</div>
+
+  <p className="text-cyan-600 font-black tracking-[0.15em] text-sm">INC-AI-0427</p>
+
+  <h2 className="text-4xl font-black text-[#020826] mt-2 mb-2">
+    Enterprise Logistics Co.
+  </h2>
+
+  <p className="text-slate-600 text-base mb-7 max-w-4xl">
+    Customer reports degraded AI workflow recommendations and delayed assistant responses across operations support teams.
+  </p>
+
+  <div className="grid grid-cols-4 gap-4">
+    
+    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+      <Layers3 className="text-cyan-500 mb-2" size={20} />
+      <p className="text-xs text-slate-400 font-bold uppercase">Product Area</p>
+      <p className="font-bold text-[#020826] mt-1">AI Workflow Assistant</p>
+    </div>
+
+    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+      <User2 className="text-cyan-500 mb-2" size={20} />
+      <p className="text-xs text-slate-400 font-bold uppercase">Reported By</p>
+      <p className="font-bold text-[#020826] mt-1">Customer Success Team</p>
+    </div>
+
+    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+      <Clock3 className="text-cyan-500 mb-2" size={20} />
+      <p className="text-xs text-slate-400 font-bold uppercase">Time Open</p>
+      <p className="font-bold text-[#020826] mt-1">47 minutes</p>
+    </div>
+
+    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+      <Users className="text-cyan-500 mb-2" size={20} />
+      <p className="text-xs text-slate-400 font-bold uppercase">Affected Users</p>
+      <p className="font-bold text-[#020826] mt-1">1,240</p>
+    </div>
+
+  </div>
+</section>
 
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
