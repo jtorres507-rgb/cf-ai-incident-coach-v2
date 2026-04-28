@@ -554,16 +554,83 @@ function ExecutiveSummary() {
     <>
       <PageHeader
         title="Executive Summary"
-        subtitle="Leadership-ready incident brief translating technical failure signals into customer risk, business impact, and recovery status."
+        subtitle="Leadership-ready incident brief translating technical failure signals into customer risk, business impact, and executive recovery actions."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-        <h3 className="font-bold text-2xl mb-4">Executive Incident Brief</h3>
-        <p className="text-slate-700 leading-8 text-lg">
-          Enterprise Logistics Co. is experiencing elevated latency and degraded recommendation quality in its AI Workflow Assistant.
-          Current analysis indicates retrieval latency and prompt routing pressure as the primary contributors. Model uptime remains stable,
-          and the recommended recovery plan is to reroute traffic, stabilize vector retrieval, and provide customer updates every 30 minutes.
-        </p>
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
+        <CommandCard icon={<Users />} title="Users Impacted" value="1,240" />
+        <CommandCard icon={<Clock />} title="SLA Risk" value="Medium" />
+        <CommandCard icon={<ShieldAlert />} title="Severity" value="High" dark />
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="col-span-2 relative overflow-hidden bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[90px] font-black">AI</div>
+
+          <h3 className="font-black text-3xl mb-4 text-[#020826]">
+            Executive Incident Brief
+          </h3>
+
+          <p className="text-slate-700 leading-8 text-lg max-w-5xl">
+            Enterprise Logistics Co. is experiencing elevated latency and degraded recommendation quality in its AI workflow assistant.
+            Current analysis indicates retrieval latency and prompt routing pressure as the primary contributors. Model uptime remains stable,
+            and the recommended recovery plan is to reroute prompt traffic, stabilize vector retrieval, and provide customer updates every 30 minutes.
+          </p>
+        </div>
+
+        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+
+          <h3 className="font-black text-2xl mb-5">Executive Risk</h3>
+          <div className="text-6xl font-black text-lime-300 mb-3">MED</div>
+          <p className="text-slate-300 leading-7">
+            Customer impact is material but controlled. SLA exposure remains manageable if remediation completes within the next response window.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+          <h3 className="font-black text-2xl mb-5">Recommended Executive Actions</h3>
+
+          <div className="space-y-4 text-slate-300 leading-7">
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Notify customer stakeholders that remediation is underway.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Route AI workflow traffic to lower-latency retrieval region.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Maintain 30-minute communication cadence until SLA risk normalizes.
+            </div>
+            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+              Escalate only if retrieval latency remains elevated after failover.
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
+          <h3 className="font-black text-2xl mb-5 text-[#020826]">
+            AI Generated Customer Memo
+          </h3>
+
+          <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 text-slate-700 leading-8">
+            “Our engineering teams have identified elevated latency in AI workflow recommendation services.
+            Active remediation is underway, and current SLA risk is classified as moderate.
+            The next customer update is scheduled within 30 minutes.”
+          </div>
+
+          <div className="mt-5 flex gap-3">
+            <span className="px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 text-xs font-bold">
+              CUSTOMER READY
+            </span>
+            <span className="px-4 py-1 rounded-full bg-lime-100 text-lime-700 text-xs font-bold">
+              EXEC APPROVED
+            </span>
+          </div>
+        </div>
       </div>
     </>
   );
