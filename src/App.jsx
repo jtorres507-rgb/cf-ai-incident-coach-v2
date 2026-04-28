@@ -99,7 +99,7 @@ const renderWorkspace = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex text-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 flex text-slate-900">
       <aside className="w-72 bg-[#020826] text-white min-h-screen px-5 py-6">
         <div className="flex items-center gap-3 mb-10">
           <div className="bg-white text-black p-3 rounded-2xl">
@@ -134,7 +134,7 @@ const renderWorkspace = () => {
         </div>
       </aside>
 
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 p-10 overflow-y-auto">
         {renderWorkspace()}
       </main>
     </div>
