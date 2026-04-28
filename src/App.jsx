@@ -99,7 +99,7 @@ const renderWorkspace = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 flex text-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#eef2f7] via-[#f4f6fa] to-[#e9edf3] flex text-slate-900">
       <aside className="w-72 bg-[#020826] text-white min-h-screen px-5 py-6">
         <div className="flex items-center gap-3 mb-10">
           <div className="bg-white text-black p-3 rounded-2xl">
@@ -183,7 +183,9 @@ function InfoCard({ title, value }) {
 }
 function PageHeader({ title, subtitle }) {
   return (
-    <div className="mb-8 rounded-3xl bg-gradient-to-r from-white to-slate-50 border border-slate-200 p-8 shadow-[0_10px_30px_rgba(2,8,32,0.08)]">
+    <div className="mb-8 rounded-[32px] bg-gradient-to-r from-white via-white to-slate-50 border border-white/80 p-8 shadow-[0_10px_30px_rgba(2,8,32,0.08)] relative overflow-hidden">
+      <div className="absolute left-0 top-10 h-32 w-1 rounded-r-full bg-gradient-to-b from-cyan-400 to-lime-400"></div>
+      <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-cyan-100/40 to-transparent blur-2xl"></div>
       <p className="text-xs font-bold tracking-[0.22em] text-slate-400 uppercase mb-3">
         AI Incident Resolution Portfolio Project
       </p>
