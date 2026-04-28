@@ -457,18 +457,72 @@ function RootCauseEngine() {
     <>
       <PageHeader
         title="Root Cause Engine"
-        subtitle="AI-assisted root cause ranking for incident diagnosis, retrieval inspection, and failure vector prioritization."
+        subtitle="AI-assisted causality console for ranking infrastructure failure vectors, retrieval latency signals, and remediation confidence."
       />
 
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="col-span-2">
+          <RootCauseChart />
+        </div>
+
+        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-lime-300"></div>
+          <h3 className="font-black text-2xl mb-5">Primary Diagnosis</h3>
+
+          <div className="text-5xl font-black text-lime-300 mb-2">87%</div>
+          <p className="text-slate-300 leading-7">
+            Confidence that degraded retrieval latency is the primary source of customer-facing recommendation failures.
+          </p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 gap-6">
-        <RootCauseChart />
-        <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-          <h3 className="font-bold text-2xl mb-4">Root Cause Findings</h3>
-          <ul className="space-y-4 text-slate-700 leading-7">
+        <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
+          <h3 className="font-black text-2xl mb-5 text-[#020826]">Root Cause Findings</h3>
+
+          <div className="space-y-4">
             {rootCauseFindings.map((finding) => (
-              <li key={finding}>• {finding}</li>
+              <div key={finding} className="border-l-4 border-cyan-400 bg-slate-50 rounded-2xl p-4 text-slate-700 font-semibold">
+                {finding}
+              </div>
             ))}
-          </ul>
+          </div>
+        </div>
+
+        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+          <h3 className="font-black text-2xl mb-5">Failure Vector Priority</h3>
+
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Vector DB Latency</span>
+                <span className="text-lime-300 font-bold">Critical</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-lime-300 w-[92%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Prompt Queue Saturation</span>
+                <span className="text-cyan-300 font-bold">High</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-cyan-300 w-[76%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Model Saturation</span>
+                <span className="text-slate-300 font-bold">Moderate</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-slate-400 w-[58%]"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
