@@ -164,11 +164,15 @@ function CommandCard({ icon, title, value, dark }) {
 
       <h3 className="text-3xl font-black tracking-tight mt-1">{value}</h3>
 
-      <div
-        className={`mt-4 h-1 rounded-full ${
-          dark ? "bg-cyan-300/70" : "bg-gradient-to-r from-cyan-400 to-lime-300"
-        }`}
-      />
+      <div className="mt-5 h-1.5 w-full rounded-full bg-slate-200 overflow-hidden">
+  <div
+    className={`h-full rounded-full ${
+      dark
+        ? "bg-gradient-to-r from-cyan-400 to-cyan-300 w-[96%]"
+        : "bg-gradient-to-r from-cyan-300 to-lime-400 w-[88%]"
+    }`}
+  ></div>
+</div>
     </div>
   );
 }
@@ -245,7 +249,7 @@ function IncidentIntake() {
         <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
       </div>
 
-      <section className="bg-white rounded-3xl shadow-[0_10px_30px_rgba(2,8,32,0.12)] p-6 mb-6 border border-slate-200">
+      <section className="group bg-white/90 backdrop-blur rounded-[30px] border border-white/80 p-7 mb-6 shadow-[0_12px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
         <p className="text-slate-500 font-bold">INC-AI-0427</p>
         <h2 className="text-3xl font-bold mt-2">Enterprise Logistics Co.</h2>
         <p className="text-slate-600 text-base mt-3">
