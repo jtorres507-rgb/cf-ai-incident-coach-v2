@@ -144,13 +144,31 @@ const renderWorkspace = () => {
 function CommandCard({ icon, title, value, dark }) {
   return (
     <div
-      className={`${
-        dark ? "bg-[#020826] text-white" : "bg-white"
-      } rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border`}
+      className={`group rounded-3xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(2,8,32,0.18)] ${
+        dark
+          ? "bg-[#020826] text-white border-[#101a3d] shadow-[0_18px_45px_rgba(2,8,32,0.22)]"
+          : "bg-white/90 backdrop-blur text-slate-900 border-slate-200 shadow-[0_10px_30px_rgba(2,8,32,0.10)]"
+      }`}
     >
-      <div className="mb-3">{icon}</div>
-      <p className="text-slate-500 text-sm">{title}</p>
-      <h3 className="text-2xl font-bold">{value}</h3>
+      <div
+        className={`mb-4 w-11 h-11 rounded-2xl flex items-center justify-center ${
+          dark ? "bg-white/10 text-cyan-300" : "bg-slate-100 text-[#020826]"
+        }`}
+      >
+        {icon}
+      </div>
+
+      <p className={`${dark ? "text-slate-300" : "text-slate-500"} text-sm`}>
+        {title}
+      </p>
+
+      <h3 className="text-3xl font-black tracking-tight mt-1">{value}</h3>
+
+      <div
+        className={`mt-4 h-1 rounded-full ${
+          dark ? "bg-cyan-300/70" : "bg-gradient-to-r from-cyan-400 to-lime-300"
+        }`}
+      />
     </div>
   );
 }
