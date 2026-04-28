@@ -121,8 +121,8 @@ const renderWorkspace = () => {
               onClick={() => setActive(item)}
               className={`w-full text-left px-5 py-3 rounded-xl font-semibold transition-all duration-300 ${
   active === item
-    ? "bg-white text-black shadow-lg"
-    : "hover:bg-slate-800 hover:translate-x-1 text-slate-200"
+    ? "bg-white text-black shadow-[0_0_22px_rgba(56,189,248,0.45)] translate-x-1"
+    : "hover:bg-slate-800 hover:translate-x-1 hover:shadow-[0_0_16px_rgba(56,189,248,0.20)] text-slate-200"
 }`}
             >
               {item}
