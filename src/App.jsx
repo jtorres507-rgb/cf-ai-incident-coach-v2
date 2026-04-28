@@ -647,7 +647,7 @@ function CustomerCommsAI() {
 
 function ChartCard() {
   return (
-    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#0f1b3d] relative overflow-hidden transition-all duration-300 hover:-translate-y-1"> transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)]
+    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)]">
     <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-transparent"></div>  
       <div className="flex items-center gap-2 mb-4">
         <BarChart3 size={20} className="text-cyan-300" />
@@ -676,7 +676,7 @@ function ChartCard() {
 
 function RootCauseChart() {
   return (
-    <div className="bg-[#07111f] text-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-800"> transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)]
+    <div className="group bg-[#020826] text-white rounded-[28px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-[#101a3d] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,8,32,0.35)]">
       <div className="flex items-center gap-2 mb-4">
         <AlertTriangle size={20} className="text-lime-300" />
         <h3 className="font-bold text-2xl">Root Cause Confidence Ranking</h3>
