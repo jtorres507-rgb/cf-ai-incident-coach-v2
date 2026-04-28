@@ -286,7 +286,7 @@ function IncidentIntake() {
           title="Incident Intake"
           subtitle="Enterprise AI incident response platform for triaging customer issues, surfacing root causes, generating remediation steps, monitoring SLA exposure, and producing executive-ready communication."
         />
-        <div className="w-96"><HealthMonitor /></div>
+        <div className="w-[420px]"><HealthMonitor /></div>
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-6">
