@@ -189,6 +189,13 @@ function PageHeader({ title, subtitle }) {
   return (
     <div className="relative overflow-hidden mb-8 rounded-[32px] bg-gradient-to-r from-white via-slate-50 to-slate-100 border border-slate-200 p-8 shadow-[0_18px_45px_rgba(2,8,32,0.12)]">
       <div className="absolute left-0 top-10 h-32 w-1 rounded-r-full bg-gradient-to-b from-cyan-400 to-lime-400"></div>
+    <div className="absolute right-6 bottom-4 opacity-20 text-cyan-300 text-[10px] leading-3 font-bold">
+        · · · · · · · · · ·<br/>
+        · · · · · · · · · ·<br/>
+        · · · · · · · · · ·<br/>
+        · · · · · · · · · ·<br/>
+        · · · · · · · · · ·
+    </div>  
       <div className="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-cyan-100/40 to-transparent blur-2xl"></div>
       <p className="text-xs font-bold tracking-[0.28em] text-slate-400 uppercase mb-4">
         AI Incident Resolution Portfolio Project
