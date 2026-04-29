@@ -8,6 +8,13 @@ import {
   ShieldAlert,
   Siren,
   Users,
+  Radar,
+  BrainCircuit,
+  SearchCode,
+  Sparkles,
+  FileBarChart2,
+  TimerReset,
+  MessageSquareQuote,
   Zap,
   Layers3,
   User2,
@@ -117,19 +124,27 @@ const renderWorkspace = () => {
         </div>
 
         <div className="space-y-3">
-          {navItems.map((item) => (
-            <button
-              key={item}
-              onClick={() => setActive(item)}
-              className={`w-full text-left px-5 py-3 rounded-xl font-semibold transition-all duration-300 ${
-  active === item
-    ? "bg-white text-black shadow-[0_0_22px_rgba(56,189,248,0.45)] translate-x-1"
-    : "hover:bg-slate-800 hover:translate-x-1 hover:shadow-[0_0_16px_rgba(56,189,248,0.20)] text-slate-200"
-}`}
-            >
-              {item}
-            </button>
-          ))}
+         {navItems.map(({ label, icon: Icon }) => (
+  <button
+    key={label}
+    onClick={() => setActive(label)}
+    className={`w-full flex items-center gap-3 text-left px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+      active === label
+        ? "bg-white text-black shadow-[0_0_22px_rgba(56,189,248,0.45)] translate-x-1"
+        : "hover:bg-slate-800 hover:translate-x-1 hover:shadow-[0_0_16px_rgba(56,189,248,0.20)] text-slate-200"
+    }`}
+  >
+    <span
+      className={`h-8 w-8 rounded-xl flex items-center justify-center ${
+        active === label ? "bg-cyan-100 text-blue-500" : "text-white/80"
+      }`}
+    >
+      <Icon size={18} />
+    </span>
+
+    <span>{label}</span>
+  </button>
+))}
         </div>
 
         <div className="mt-10 bg-[#09123d] rounded-2xl p-4 text-slate-200 text-sm leading-6">
