@@ -726,14 +726,100 @@ function ResolutionTimeline() {
         subtitle="Chronological incident timeline showing detection, diagnosis, remediation planning, and customer communication milestones."
       />
 
-      <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-        <h3 className="font-bold text-2xl mb-4">Incident Timeline</h3>
-        <div className="space-y-4">
-          {timelineEvents.map((event) => (
-            <div key={event} className="bg-slate-100 rounded-2xl p-4 font-semibold text-slate-700">
-              {event}
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        <CommandCard icon={<TimerReset />} title="Elapsed Time" value="47 min" dark />
+        <CommandCard icon={<Activity />} title="Current Phase" value="Recover" />
+        <CommandCard icon={<ShieldAlert />} title="SLA Risk" value="Medium" />
+        <CommandCard icon={<MessageSquare />} title="Next Update" value="30 min" />
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="col-span-2 relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.28)] border border-[#101a3d] overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-5 opacity-10 text-cyan-300 text-[88px] font-black">AI</div>
+
+          <h3 className="font-bold text-2xl mb-6">Incident Timeline</h3>
+
+          <div className="space-y-5">
+            {timelineEvents.map((event, i) => (
+              <div key={event} className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className={`h-4 w-4 rounded-full ${i < 2 ? "bg-cyan-300" : "bg-lime-300"}`}></div>
+                  {i < timelineEvents.length - 1 && <div className="w-[2px] flex-1 bg-white/10 mt-2"></div>}
+                </div>
+
+                <div className="pb-4">
+                  <p className="text-xs font-bold tracking-[0.18em] text-slate-400 uppercase">
+                    Step {i + 1}
+                  </p>
+                  <p className="text-slate-200 font-semibold leading-7">{event}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)] overflow-hidden">
+          <div className="absolute right-6 top-5 opacity-10 text-[#020826] text-[78px] font-black">47</div>
+
+          <h3 className="font-black text-2xl text-[#020826] mb-4">Recovery Window</h3>
+          <div className="text-6xl font-black text-lime-400 mb-3">30m</div>
+          <p className="text-slate-700 leading-7">
+            AI predicts recovery validation and customer-facing update can complete inside the next response window.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="relative bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)] overflow-hidden">
+          <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[82px] font-black">SLA</div>
+          <h3 className="font-black text-2xl text-[#020826] mb-5">Milestone Readiness</h3>
+
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Diagnosis Confidence</span>
+                <span className="font-bold">91%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-cyan-300 w-[91%]"></div>
+              </div>
             </div>
-          ))}
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Remediation Progress</span>
+                <span className="font-bold">76%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-lime-300 w-[76%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Customer Update Preparedness</span>
+                <span className="font-bold">88%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-cyan-300 w-[88%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-lime-300 via-cyan-300 to-transparent"></div>
+          <div className="absolute right-8 top-5 opacity-10 text-lime-300 text-[82px] font-black">AI</div>
+
+          <h3 className="font-bold text-2xl mb-5">Next Timeline Action</h3>
+          <p className="text-slate-300 leading-8">
+            Validate vector retrieval recovery, confirm prompt routing stability, and send customer update once latency remains below threshold for the next checkpoint.
+          </p>
+
+          <div className="mt-6 h-2 rounded-full bg-white/10">
+            <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[82%]"></div>
+          </div>
         </div>
       </div>
     </>
