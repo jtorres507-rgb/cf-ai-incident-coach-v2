@@ -454,8 +454,6 @@ function AgentAnalysis() {
     </div>
   </div>
 
-  <div className="grid grid-cols-2 gap-6">
-</div>
       <div className="grid grid-cols-2 gap-6">
         <ChartCard />
 
@@ -532,11 +530,11 @@ function AIRecommendations() {
         subtitle="Recommended remediation sequence for engineering, customer success, and executive stakeholder alignment."
       />
 
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        <CommandCard icon={<Zap />} title="Remediation Queue" value="4 Actions" />
-        <CommandCard icon={<Clock />} title="Est. Recovery" value="32 min" />
-        <CommandCard icon={<Users />} title="Teams Engaged" value="3" />
-        <CommandCard icon={<ShieldAlert />} title="Priority" value="Critical" dark />
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        <CommandCard icon={<ShieldAlert />} title="Severity" value="High" dark />
+        <CommandCard icon={<Clock />} title="SLA Risk" value="Medium" />
+        <CommandCard icon={<Users />} title="Users Impacted" value="1,240" />
+        <CommandCard icon={<Target />} title="Business Impact" value="$48K" />
       </div>
 
       <div className="grid grid-cols-3 gap-6 mb-6">
@@ -666,7 +664,8 @@ function ExecutiveSummary() {
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-lime-300"></div>
 
           <h3 className="font-black text-2xl mb-5">Executive Risk</h3>
-          <div className="text-6xl font-black text-lime-300 mb-3">MED</div>
+          <div className="text-7xl font-black text-lime-300 mb-3 tracking-tight">MED</div>
+          <div className="text-cyan-300 text-sm font-bold uppercase tracking-[0.2em] mb-4">CONTAINED EXPOSURE</div>
           <p className="text-slate-300 leading-7">
             Customer impact is material but controlled. SLA exposure remains manageable if remediation completes within the next response window.
           </p>
