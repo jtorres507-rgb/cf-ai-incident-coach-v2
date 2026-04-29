@@ -823,25 +823,38 @@ function ChartCard() {
               color: "#fff",
             }}
           />
-          <Area
-            type="monotone"
-            dataKey="latency"
-            stroke="#67e8f9"
-            fill="#164e63"
-            strokeWidth={4}
-            dot={{
-              r: 6,
-              fill: "#67e8f9",
-              stroke: "#cffafe",
-              strokeWidth: 2,
-            }}
-            activeDot={{
-              r: 8,
-              fill: "#67e8f9",
-              stroke: "#ffffff",
-              strokeWidth: 3,
-            }}
-          />
+         <defs>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+    <feMerge>
+      <feMergeNode in="coloredBlur" />
+      <feMergeNode in="SourceGraphic" />
+    </feMerge>
+  </filter>
+</defs>
+
+<Area
+  type="monotone"
+  dataKey="latency"
+  stroke="#67e8f9"
+  fill="#164e63"
+  strokeWidth={5}
+  filter="url(#glow)"
+  dot={{
+    r: 7,
+    fill: "#67e8f9",
+    stroke: "#cffafe",
+    strokeWidth: 3,
+    filter: "url(#glow)",
+  }}
+  activeDot={{
+    r: 10,
+    fill: "#67e8f9",
+    stroke: "white",
+    strokeWidth: 4,
+    filter: "url(#glow)",
+  }}
+/>
         </AreaChart>
       </ResponsiveContainer>
     </div>
