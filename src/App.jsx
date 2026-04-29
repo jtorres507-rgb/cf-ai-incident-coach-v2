@@ -772,8 +772,8 @@ function CustomerCommsAI() {
         subtitle="AI-generated customer communication package for executive updates, trust recovery, and incident transparency."
       />
 
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-[#020826] text-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)]">
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.28)]">
           <h3 className="font-bold text-2xl mb-4">Generated Customer Update</h3>
           <p className="text-slate-300 leading-8">
             Our engineering team has identified elevated latency affecting AI workflow recommendations.
@@ -782,11 +782,89 @@ function CustomerCommsAI() {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-          <h3 className="font-bold text-2xl mb-4">Internal Engineering Note</h3>
+        <div className="bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+          <h3 className="font-bold text-2xl text-[#020826] mb-4">Internal Engineering Note</h3>
           <p className="text-slate-700 leading-8">
             Focus response on retrieval queue saturation, vector timeout concentration, and prompt routing stability.
             Maintain customer update cadence while engineering validates traffic reroute and retrieval recovery.
+          </p>
+        </div>
+
+        <div className="bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+          <h3 className="font-bold text-2xl text-[#020826] mb-4">Executive Status Brief</h3>
+          <div className="space-y-3 text-slate-700 leading-7">
+            <div>SLA Exposure: Moderate</div>
+            <div>Revenue Impact Window: Contained</div>
+            <div>Recovery ETA: 30–45 Minutes</div>
+            <div>AI Confidence Score: 91%</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)] mb-6">
+        <h3 className="font-bold text-2xl text-[#020826] mb-6">AI Communication Timeline</h3>
+        <div className="grid grid-cols-4 gap-4">
+          <div className="border-l-4 border-cyan-400 pl-4">
+            <div className="text-sm text-slate-400">9:10 AM</div>
+            <div className="font-semibold text-[#020826]">Initial Customer Alert Sent</div>
+          </div>
+          <div className="border-l-4 border-cyan-400 pl-4">
+            <div className="text-sm text-slate-400">9:35 AM</div>
+            <div className="font-semibold text-[#020826]">Engineering Validation Message</div>
+          </div>
+          <div className="border-l-4 border-lime-400 pl-4">
+            <div className="text-sm text-slate-400">10:00 AM</div>
+            <div className="font-semibold text-[#020826]">SLA Risk Notification</div>
+          </div>
+          <div className="border-l-4 border-lime-400 pl-4">
+            <div className="text-sm text-slate-400">10:30 AM</div>
+            <div className="font-semibold text-[#020826]">Executive Recovery Memo</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.28)]">
+          <h3 className="font-bold text-2xl mb-5">Tone / Confidence Analyzer</h3>
+
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Trust Preservation</span>
+                <span className="text-lime-300 font-bold">94%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-lime-300 w-[94%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Transparency Level</span>
+                <span className="text-cyan-300 font-bold">89%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-cyan-300 w-[89%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Escalation Sensitivity</span>
+                <span className="text-slate-300 font-bold">22%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-slate-300 w-[22%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+          <h3 className="font-bold text-2xl mb-5">Recommended Next Customer Message</h3>
+          <p className="text-slate-300 leading-8">
+            Inform customer retrieval reroute is underway, latency metrics are stabilizing, and no full AI workflow outage
+            has been detected. Preserve confidence while avoiding premature resolution commitment.
           </p>
         </div>
       </div>
