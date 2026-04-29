@@ -748,17 +748,138 @@ function EscalationMatrix() {
         subtitle="Ownership routing for technical response, customer communication, SLA protection, and executive escalation."
       />
 
-      <div className="grid grid-cols-4 gap-4">
-        {escalationOwners.map((item) => (
-          <div key={item.owner} className="bg-white rounded-3xl p-5 shadow-[0_10px_30px_rgba(2,8,32,0.12)] border border-slate-200">
-            <p className="text-slate-500 text-sm">Owner</p>
-            <h3 className="font-bold text-xl">{item.owner}</h3>
-            <p className="text-slate-500 text-sm mt-4">SLA</p>
-            <p className="font-bold">{item.sla}</p>
-            <p className="text-slate-500 text-sm mt-4">Level</p>
-            <p className="font-bold">{item.level}</p>
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        {escalationOwners.map((item, i) => (
+          <div
+            key={item.owner}
+            className={`relative overflow-hidden rounded-[30px] p-6 border shadow-[0_14px_34px_rgba(15,23,42,0.08)] ${
+              i === 0
+                ? "bg-[#020826] text-white border-[#101a3d]"
+                : "bg-white/92 backdrop-blur-md border-white"
+            }`}
+          >
+            <div className="absolute right-5 top-4 opacity-10 text-[58px] font-black">
+              {i + 1}
+            </div>
+            <p className={i === 0 ? "text-cyan-300 text-sm" : "text-slate-500 text-sm"}>
+              Owner
+            </p>
+            <h3 className="font-black text-xl mt-1">{item.owner}</h3>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <div>
+                <p className={i === 0 ? "text-slate-400 text-xs" : "text-slate-400 text-xs"}>
+                  SLA
+                </p>
+                <p className="font-black">{item.sla}</p>
+              </div>
+              <div>
+                <p className={i === 0 ? "text-slate-400 text-xs" : "text-slate-400 text-xs"}>
+                  Level
+                </p>
+                <p className="font-black">{item.level}</p>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="col-span-2 relative bg-[#020826] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.28)] border border-[#101a3d] overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+          <div className="absolute right-8 top-5 opacity-10 text-cyan-300 text-[88px] font-black">SLA</div>
+
+          <h3 className="font-bold text-2xl mb-5">Escalation Routing Logic</h3>
+
+          <div className="space-y-5 text-slate-300 leading-7">
+            <div className="border-l-2 border-cyan-400 pl-4">
+              Reliability Lead owns immediate technical triage while incident severity remains high.
+            </div>
+            <div className="border-l-2 border-cyan-400 pl-4">
+              AI Platform Engineer validates retrieval reroute, queue saturation, and vector timeout behavior.
+            </div>
+            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+              Customer Success Director assumes communication cadence if SLA exposure exceeds 45 minutes.
+            </div>
+            <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+              Executive Sponsor is notified only if customer impact remains elevated after recovery checkpoint.
+            </div>
+          </div>
+        </div>
+
+        <div className="relative bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)] overflow-hidden">
+          <div className="absolute right-6 top-5 opacity-10 text-[#020826] text-[78px] font-black">04</div>
+          <h3 className="font-black text-2xl text-[#020826] mb-4">Current Escalation State</h3>
+          <div className="text-6xl font-black text-lime-400 mb-3">HOLD</div>
+          <p className="text-slate-700 leading-7">
+            Executive escalation remains on hold while retrieval recovery is active and customer communication cadence is maintained.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        <div className="relative bg-white/92 backdrop-blur-md rounded-[30px] p-7 border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)] overflow-hidden">
+          <div className="absolute right-8 top-6 opacity-10 text-cyan-400 text-[82px] font-black">AI</div>
+          <h3 className="font-black text-2xl text-[#020826] mb-5">Ownership Timeline</h3>
+
+          <div className="space-y-4">
+            <div className="border-l-4 border-cyan-400 pl-4">
+              <p className="text-sm text-slate-400">0–15 min</p>
+              <p className="font-bold text-[#020826]">Reliability Lead drives technical diagnosis.</p>
+            </div>
+            <div className="border-l-4 border-cyan-400 pl-4">
+              <p className="text-sm text-slate-400">15–30 min</p>
+              <p className="font-bold text-[#020826]">Platform Engineer validates remediation path.</p>
+            </div>
+            <div className="border-l-4 border-lime-400 pl-4">
+              <p className="text-sm text-slate-400">30–45 min</p>
+              <p className="font-bold text-[#020826]">Customer Success owns external update cadence.</p>
+            </div>
+            <div className="border-l-4 border-lime-400 pl-4">
+              <p className="text-sm text-slate-400">45–60 min</p>
+              <p className="font-bold text-[#020826]">Executive Sponsor notified if SLA remains exposed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-lime-300 via-cyan-300 to-transparent"></div>
+          <div className="absolute right-8 top-5 opacity-10 text-lime-300 text-[82px] font-black">AI</div>
+
+          <h3 className="font-bold text-2xl mb-5">Escalation Risk Controls</h3>
+
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Technical Ownership Clarity</span>
+                <span className="text-lime-300 font-bold">96%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-lime-300 w-[96%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Customer Communication Coverage</span>
+                <span className="text-cyan-300 font-bold">91%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-cyan-300 w-[91%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Executive Escalation Pressure</span>
+                <span className="text-slate-300 font-bold">34%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10">
+                <div className="h-2 rounded-full bg-slate-300 w-[34%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
