@@ -356,11 +356,76 @@ function IncidentIntake() {
   </div>
 </section>
 
-      <div className="grid grid-cols-2 gap-6">
-        <ChartCard />
-        <RootCauseChart />
+      <div className="grid grid-cols-3 gap-6">
+  <div className="col-span-2 bg-[#07111f] text-white rounded-[30px] p-7 shadow-[0_18px_45px_rgba(2,8,32,0.30)] border border-slate-800 relative overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-lime-300"></div>
+    <div className="absolute right-8 top-5 opacity-10 text-cyan-300 text-[90px] font-black">INTAKE</div>
+
+    <div className="flex items-center mb-5">
+      <h3 className="font-black text-3xl">Live Incident Feed</h3>
+      <span className="ml-auto px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+        • ACTIVE TRIAGE
+      </span>
+    </div>
+
+    <div className="space-y-4 text-slate-300 leading-7">
+      <div className="border-l-2 border-cyan-400 pl-4">
+        08:42 AM — Customer Success reports degraded AI assistant response quality.
       </div>
-    </>
+      <div className="border-l-2 border-cyan-400 pl-4">
+        08:47 AM — Latency monitoring confirms retrieval spike beyond SLA threshold.
+      </div>
+      <div className="border-l-2 border-cyan-400 pl-4">
+        08:51 AM — AI platform orchestration queue saturation detected.
+      </div>
+      <div className="border-l-2 border-lime-300 pl-4 text-lime-300 font-bold">
+        08:55 AM — Root Cause Engine engaged for autonomous diagnostic ranking.
+      </div>
+    </div>
+  </div>
+
+  <div className="bg-white rounded-[30px] p-7 shadow-[0_14px_34px_rgba(2,8,32,0.08)] border border-white">
+    <h3 className="font-black text-2xl text-[#020826] mb-4">Initial AI Assessment</h3>
+
+    <div className="text-6xl font-black text-lime-400 mb-3">87%</div>
+    <p className="text-slate-600 leading-7 mb-6">
+      Incident signature strongly matches historical retrieval latency degradation with moderate prompt routing instability.
+    </p>
+
+    <div className="space-y-4">
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Latency Match</span>
+          <span className="font-bold">89%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[89%]"></div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Queue Saturation Match</span>
+          <span className="font-bold">83%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[83%]"></div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Prompt Instability Match</span>
+          <span className="font-bold">74%</span>
+        </div>
+        <div className="h-2 rounded-full bg-slate-200">
+          <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[74%]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</>
   );
 }
 
