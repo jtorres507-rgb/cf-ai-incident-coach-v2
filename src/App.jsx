@@ -713,6 +713,31 @@ function ExecutiveSummary() {
           </div>
         </div>
       </div>
+      <div className="mt-6 bg-[#07111f] text-white rounded-[30px] p-6 shadow-[0_18px_45px_rgba(2,8,32,0.25)] border border-slate-800">
+  <div className="flex items-center justify-between mb-4">
+    <h3 className="font-black text-2xl">Executive Recovery Outlook</h3>
+    <span className="px-4 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-300 text-xs font-bold">
+      BOARD READY
+    </span>
+  </div>
+
+  <div className="grid grid-cols-3 gap-6 text-sm">
+    <div>
+      <div className="text-slate-400 mb-1">Recovery Probability</div>
+      <div className="text-cyan-300 font-black text-3xl">91%</div>
+    </div>
+
+    <div>
+      <div className="text-slate-400 mb-1">Customer Stability Window</div>
+      <div className="text-cyan-300 font-black text-3xl">30 MIN</div>
+    </div>
+
+    <div>
+      <div className="text-slate-400 mb-1">Escalation Necessity</div>
+      <div className="text-lime-300 font-black text-3xl">LOW</div>
+    </div>
+  </div>
+</div>
     </>
   );
 }
