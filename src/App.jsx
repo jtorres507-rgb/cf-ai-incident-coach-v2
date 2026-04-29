@@ -494,11 +494,12 @@ function RootCauseChart() {
 
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={confidenceData} layout="vertical">
-          <XAxis type="number" stroke="#4a5568" />
-          <YAxis datakey="name" type="category" width={150} stroke="#cbd5e1" />
+          <XAxis type="number" domain={[0, 100]} tick={{ fill: "silver" }} stroke="slategray" />
+          <YAxis dataKey="name" type="category" width={150} tick={{ fill: "lightgray", fontSize: 14 }} stroke="lightgray" />
           <Tooltip />
-          <Bar dataKey="value" fill="#a3e635" radius={[0, 10, 10, 0]} />
+          <Bar dataKey="value" fill="greenyellow" radius={[0, 10, 10, 0]} />
         </BarChart>
+
       </ResponsiveContainer>
     </div>
   );
