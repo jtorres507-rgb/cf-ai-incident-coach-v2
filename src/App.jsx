@@ -31,14 +31,14 @@ import {
 } from "recharts";
 
 const navItems = [
-  "Incident Intake",
-  "Agent Analysis",
-  "Root Cause Engine",
-  "AI Recommendations",
-  "Executive Summary",
-  "Resolution Timeline",
-  "Escalation Matrix",
-  "Customer Comms AI",
+  { label: "Incident Intake", icon: Radar },
+  { label: "Agent Analysis", icon: BrainCircuit },
+  { label: "Root Cause Engine", icon: SearchCode },
+  { label: "AI Recommendations", icon: Sparkles },
+  { label: "Executive Summary", icon: FileBarChart2 },
+  { label: "Resolution Timeline", icon: TimerReset },
+  { label: "Escalation Matrix", icon: ShieldAlert },
+  { label: "Customer Comms AI", icon: MessageSquareQuote },
 ];
 
 const trendData = [
