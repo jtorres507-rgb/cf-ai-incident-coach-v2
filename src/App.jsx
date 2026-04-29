@@ -413,7 +413,7 @@ function AgentAnalysis() {
     </div>
   </div>
 
-  <div className="relative bg-white rounded-[30px] p-7 shadow-[0_12px_35px_rgba(2,8,32,0.10)] border border-white overflow-hidden">
+  <div className="relative bg-white/92 backdrop-blur-md rounded-[30px] border border-white shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
     <div className="absolute right-6 top-5 opacity-10 text-[#020826] text-[80px] font-black">01</div>
 
     <h3 className="font-black text-2xl text-[#020826] mb-5">Signal Confidence</h3>
