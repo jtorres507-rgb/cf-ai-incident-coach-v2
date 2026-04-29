@@ -570,13 +570,46 @@ function AIRecommendations() {
 
           <h3 className="font-black text-2xl mb-4 text-[#020826]">AI Confidence</h3>
           <div className="text-6xl font-black text-lime-400 mb-3">94%</div>
+
           <p className="text-slate-600 leading-7">
-            Recommendation engine confidence indicates this remediation sequence has the highest SLA preservation probability.
+            Recommendation engine confidence indicates this remediation sequence has the highest SLA preservation probability under current failure signatures.
           </p>
+
+          <div className="mt-6 space-y-4">
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Prompt Routing Match</span>
+                <span className="font-bold">91%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 w-[91%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Retrieval Failure Match</span>
+                <span className="font-bold">84%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-lime-300 w-[84%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-1">
+                <span>Latency Correlation</span>
+                <span className="font-bold">77%</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-200">
+                <div className="h-2 rounded-full bg-gradient-to-r from-lime-300 to-lime-400 w-[77%]"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-6 mb-6">
         <div className="bg-white/90 rounded-[30px] p-7 shadow-[0_16px_40px_rgba(2,8,32,0.10)] border border-white">
           <h3 className="font-black text-2xl mb-5 text-[#020826]">Team Assignment Matrix</h3>
 
@@ -623,7 +656,18 @@ function AIRecommendations() {
               </div>
             </div>
           </div>
+
+          <div className="mt-7 pt-5 border-t border-white/10 text-lime-300 font-bold text-xl">
+            SLA HOLD WINDOW MAINTAINED
+          </div>
         </div>
+      </div>
+
+      <div className="bg-white rounded-[30px] p-7 shadow-[0_14px_34px_rgba(2,8,32,0.08)] border border-white">
+        <h3 className="font-black text-2xl text-[#020826] mb-4">AI Tactical Decision Narrative</h3>
+        <p className="text-slate-700 leading-8">
+          Current remediation path prioritizes retrieval latency suppression over executive escalation because model uptime remains stable and customer-facing response quality is recoverable within one communication cycle. Executive escalation is not yet recommended unless retrieval degradation persists beyond the 30-minute stabilization checkpoint.
+        </p>
       </div>
     </>
   );
